@@ -3,27 +3,27 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Your Title
-subtitle: This is hexo theme
-author: John Doe
+title: bitgwang 의 무기고
+subtitle: 차근차근 쌓아가자
+author: Yungwang Ryu
 language:
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite-url       # Note: don't forget to modify the CNAME file to your url
+url: https://biggwang.github.io/       # Note: don't forget to modify the CNAME file to your url
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 #Custom Setting Start
-
+     
 # Site settings
-SEOTitle: Beantech | 豆科技
-email: beantech@gmail.com
-description: ""
+SEOTitle: 류윤광의 개발 블로그
+email: ghmryg@gmail.com
+description: "개발 무기고"
 keyword: ""
-header-img: img/header_img/home-bg-2-dark.png
+header-img: img/header_img/bg_computer.png
 signature: true #show signature
 signature-img: img/signature/BeanTechSign-white.png 
 
@@ -42,7 +42,7 @@ anchorjs: true                          # if you want to customize anchor. check
 
 
 # Disqus settings
-disqus_username: your-disqus-ID
+disqus_username: Yungwang
 
 # Duoshuo settings
 # duoshuo_username: kaijun
@@ -54,8 +54,8 @@ duoshuo_share: true                     # set to false if you want to use Commen
 # Baidu Analytics
 # ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
-ga_track_id: 'UA-XXXXXXXX-X'          # Format: UA-xxxxxx-xx
-ga_domain: yoursite
+ga_track_id: 'UA-128907631-1'          # Format: UA-xxxxxx-xx
+ga_domain: https://biggwang.github.io/
 
 
 # Sidebar settings
@@ -177,5 +177,31 @@ sitemap:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: https://github.com/YenYuHsuan/hexo-theme-beantech.git
-  branch: gh-page
+  repo: https://github.com/biggwang/biggwang.github.io.git
+  branch: master
+
+# Disqus
+comments:
+    disqus_shortname: biggwang
+
+# rss feed auto generator
+feed:
+  type: atom
+  path: feed.xml
+  limit: 20
+  hub:
+
+# robots.txt
+robotstxt:
+  User-agent: "*"
+  Allow: /
+  Sitemap: https://biggwang.github.io/sitemap.xml
+
+#nofollow
+nofollow:
+  enable: true
+
+plugins:
+    google_analytics: UA-128907631-1
+
+
