@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="개발 무기고">
+    <meta name="keyword" content="">
+    <meta property="og:title" content="류윤광의 개발 블로그">
+    <meta property="og:description" content="개발 무기고">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          내가 작성한 코드가 메모리에서 어떻게 실행 될까 - 류윤광의 개발 블로그
+        
+    </title>
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/01/03/OS/[OS] 내가 작성한 코드가 메모리에서 어떻게 실행 될까/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css"> -->
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/01/03/os/[os] 내가 작성한 코드가 메모리에서 어떻게 실행 될까/">
+
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <!-- <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('bg_computer.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/BeanTechSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#OS" title="OS">OS</a>
+                            
+                        </div>
+                        <h1>내가 작성한 코드가 메모리에서 어떻게 실행 될까</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yungwang Ryu on
+                            2019-01-03
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">백문이불여일견</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2><span id="들어가며">들어가며</span></h2>
+<p>패스트캠퍼스 OS 파트 이준희 강사님 강의를 듣고 이해한 내용을 Java로 대입하여 <strong>코드가 실제 메모리 영역에서 어떻게 동작</strong> 하는지 적용해보겠다.<br>
+자바는 인터프리터로 해석하기도 하고 한꺼번에 컴파일해서 실행하기도 하지만 핵심은 코드가 메모리에서 어떻게 동작하는지 정리해본다.  또한 초안 단계라 지속적으로 내용을 다듬고 정리하여 정확하고 완성도 있게 만들어 보자</p>
+<h2><span id="포스팅-목표">포스팅 목표</span></h2>
+<p>Java 코드가 OS에게 할당받은 JVM위 메모리 영역에서 어떻게 움직이는지 확실하게 다른 사람을 이해시켜보자</p>
+<p>우선, 아래와 같은 코드가 있다고 하자</p>
+<img src="/2019/01/03/OS/[OS]%20내가%20작성한%20코드가%20메모리에서%20어떻게%20실행%20될까/OS_process_code.png">
+<p>이 상태에서 JVM이 실행되면 어떻게 될까?</p>
+<h3><span id="jvm이-os에게-메모리에-할당-요청을-한다">JVM이 OS에게 메모리에 할당 요청을 한다.</span></h3>
+<p>자바는 JVM 가상머신 위에서 동작하므로 JVM이 동작 하려면 메모리를 OS에게 할당 받아야 한다.</p>
+<h3><span id="자바-컴파일러가-java-파일을-class-파일byte-code로-변환한다">자바 컴파일러가 .java 파일을 .class 파일(byte code)로 변환한다.</span></h3>
+<p>Runtime 시점에서 ClassLoader가 자바 문법이 맞는지 등등… 해석 및 최적화 과정을 거치고 ClassLoader가 JVM내 메모리 Runtime Data Area 영역인 Method Aread(Code) 영역으로 옮긴다.</p>
+<img src="/2019/01/03/OS/[OS]%20내가%20작성한%20코드가%20메모리에서%20어떻게%20실행%20될까/OS_process.png">  
+<p>위와 같이 Runtime Data Area 영역에 각 역활이 정해지면 Execution Engine이 Method Area에 있는 바이트 코드를 네이티브 코드로 변환 하면서 프로그램을 실행 하게 된다.</p>
+<blockquote>
+<p>자바는 코드 한줄 씩 인터프리터로 해석하기도 하였다가 호출 빈도가 높고나 특정 조건이 맞으면 한꺼번에 컴파일을 하여 프로그램을 실행하기도 한다고 하였지만 여기서는 전체 코드가 컴파일 되었다고 가정하자 <a href="https://goo.gl/D9ucvB" rel="external nofollow noopener noreferrer" target="_blank">참고</a></p>
+</blockquote>
+<h3><span id="동작">동작</span></h3>
+<p>제일먼저 main 함수가 시작 되지만 그 전에 PC REGISTER에 Stack Pointer에 StackFrame에 최댓 값인 1000H가 먼저 초기화 되고 함수가 return 될 주소 0011H가 입력되게 된다.  그래야 함수가 종료되고 다음 위치로 이동하여 계속 코드를 실행하기 때문이다.</p>
+<blockquote>
+<p>소스코드가 동작하면서 함수가 호출되면 Stack 영역에 동적으로 메모리를 할당(객체 생성)하게 되면 Heap영역에 전역 변수에 대한 공간은 Data 영역에 각 용도에 맞게 값이 저장되면서 동시에 PC Register도 코드에 대한 Context를 알아야 하기 때문에 같이 값이 바뀌고 있는것을 인지해야 한다.</p>
+</blockquote>
+<p>Stack에 쌓일때 이용되는 레지스터는 아래와 같다.</p>
+<img src="/2019/01/03/OS/[OS]%20내가%20작성한%20코드가%20메모리에서%20어떻게%20실행%20될까/OS_register.png">  
+<h4><span id="program-counter">Program Counter</span></h4>
+<p>이때 CODE영역에서는 코드가 한줄 실행 될때마다 해당 코드에 메모리 주소값이 Program Counter Register에 계속 값이 바뀐다.</p>
+<p>메소드가 실행되면 return address값이 stack에 입력되면 그다음 파라미터 값들이 차례데로 입력된다. 또한 메소드내 선언 된 지역변수 또한 다음 stack에 쌓이게 된다.</p>
+<h4><span id="stack-pointer">Stack Pointer</span></h4>
+<p>이때 stack에 쌓이면 Program Counter와 같이 Stack Pointer 라는게 존재하는데 마찬가지로 Stack 채워질때 마다 해당 주소가 계속 바뀐다고 생각하면된다.</p>
+<p>code영역에 보이는 바와 같이 함수안에 함수가 선언되면 마찬가지로 제일 먼저 return address가 stack에 입력되고 코드데로 처리가 된다.</p>
+<h4><span id="ebp">EBP</span></h4>
+<p>이때 EBP라는 Register가 있는데 하는 역활은 함수내 함수 호출이 계속 이루어지다가 만약 오류가 발생 했을 때 어디서 오류가 발생했는지 빠르게 함수를 트래킹 하기 위해 존재하는 레지스터 이다.  Stack Pointer에 바로 다음 주소 값을 가리킨다고 생각하면 된다.</p>
+<h4><span id="eax">EAX</span></h4>
+<p>함수에 대한 return 값을 보관하고 있는 레지스터 이다. return total 하면 total값은 3이기 때문에 3이 EAX 레지스터에 들어가게 된다.</p>
+<p>return이 되고 나면 함수를 빠져 나온것이기 때문에 0FFAH부터 차근차근 위로 올라가 Stack이 비워지게 되며 main함수까지 다 끝나면 stack frame은 비워지게 된다.</p>
+<h2><span id="마치며">마치며</span></h2>
+<p>강의를 여러번 듣고 겨우 큰 그림은 이해한거 같다.<br>
+로우레벨단위를 단시간 안에 내것으로 만들긴 힘들겠지만 지속적으로 기반지식이 쌓여 이해한 내용을 여기에 계속 업데이트하여 확실한 지식을 만들어 놓자</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/01/04/메타인지/[meta] 개발자 논리적인 사고력에 대해서/" data-toggle="tooltip" data-placement="top" title="개발자 논리적인 사고력에 대해서">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/12/26/메타인지/[meta] 개발자 어떻게 공부 해야 할까/" data-toggle="tooltip" data-placement="top" title="개발자 어떻게 공부 해야 할까">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+                
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">들어가며</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">포스팅 목표</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">JVM이 OS에게 메모리에 할당 요청을 한다.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">자바 컴파일러가 .java 파일을 .class 파일(byte code)로 변환한다.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">동작</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">Program Counter</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">Stack Pointer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">EBP</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.4.</span> <span class="toc-nav-text">EAX</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">마치며</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#OS" title="OS">OS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Yungwang";
+    var disqus_identifier = "https://biggwang.github.io/2019/01/03/OS/[OS] 내가 작성한 코드가 메모리에서 어떻게 실행 될까/";
+    var disqus_url = "https://biggwang.github.io/2019/01/03/OS/[OS] 내가 작성한 코드가 메모리에서 어떻게 실행 될까/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yungwang Ryu 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" rel="external nofollow noopener noreferrer" target="_blank">BeanTech</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://biggwang.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-128907631-1';
+    var _gaDomain = 'https://biggwang.github.io/';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://biggwang.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

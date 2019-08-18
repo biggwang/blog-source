@@ -3,17 +3,22 @@
 
     <sitemap>
         <loc>https://biggwang.github.io/post-sitemap.xml</loc>
-        <lastmod>2018-12-26T14:52:11.170Z</lastmod>
+        <lastmod>2019-08-18T00:43:40.388Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>https://biggwang.github.io/page-sitemap.xml</loc>
-        <lastmod>2018-12-03T15:39:05.918Z</lastmod>
+        <lastmod>2019-02-06T08:17:22.636Z</lastmod>
+    </sitemap>
+
+    <sitemap>
+        <loc>https://biggwang.github.io/category-sitemap.xml</loc>
+        <lastmod>2019-08-18T00:43:40.388Z</lastmod>
     </sitemap>
 
     <sitemap>
         <loc>https://biggwang.github.io/tag-sitemap.xml</loc>
-        <lastmod>2018-12-04T15:37:44.126Z</lastmod>
+        <lastmod>2019-07-10T14:42:50.438Z</lastmod>
     </sitemap>
 
 </sitemapindex>

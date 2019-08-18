@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="개발 무기고">
+    <meta name="keyword" content="">
+    <meta property="og:title" content="류윤광의 개발 블로그">
+    <meta property="og:description" content="개발 무기고">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          개발자 논리적인 사고력에 대해서 - 류윤광의 개발 블로그
+        
+    </title>
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/01/04/메타인지/[meta] 개발자 논리적인 사고력에 대해서/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css"> -->
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/01/04/메타인지/[meta] 개발자 논리적인 사고력에 대해서/">
+
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <!-- <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('bg_computer.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/BeanTechSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Book" title="Book">Book</a>
+                            
+                              <a class="tag" href="/tags/#개발일반" title="개발일반">개발일반</a>
+                            
+                              <a class="tag" href="/tags/#메타" title="메타">메타</a>
+                            
+                        </div>
+                        <h1>개발자 논리적인 사고력에 대해서</h1>
+                        <h2 class="subheading">문제해결과 알고리즘 책을 읽고</h2>
+                        <span class="meta">
+                            Posted by Yungwang Ryu on
+                            2019-01-04
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">백문이불여일견</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3><span id="들어가며">들어가며</span></h3>
+<p>컴퓨팅사고력 향상을 위한 문제해결과 알고리즘에 대한 책을 읽으면서 개발자에 필수 역략인 문제해결 능력, 논리력, 절차적 사고력에 관한 정의와 개념이 잘되어 있어 내용을 정리하여 머릿속에 넣고 싶어 포스팅을 시작해 본다.</p>
+<h3><span id="문제란">문제란?</span></h3>
+<blockquote>
+<p>현재 상태의 변화로 인해 본인이 원하는 방향의 목표 상태가 생기는 것을 의미</p>
+</blockquote>
+<p>여려 요인에 의해서 이루어야(해결해야) 하는 목표가 생긴 상태</p>
+<h3><span id="문제해결이란">문제해결이란?</span></h3>
+<blockquote>
+<p>현재 상태와 목표 상태의 차이를 해결한 결과물</p>
+</blockquote>
+<h3><span id="일반적-문제해결-과정">일반적 문제해결 과정</span></h3>
+<blockquote>
+<p>문제 이해 -&gt; 해결 방안 고안 -&gt; 해결책 선택 -&gt; 실행 및 평가</p>
+</blockquote>
+<h3><span id="컴퓨팅-기반-문제해결-과정">컴퓨팅 기반 문제해결 과정</span></h3>
+<blockquote>
+<p>문제 이해 -&gt; 해결 과정 설계 -&gt; 프로그램이 구현 -&gt; 결과물 확인</p>
+</blockquote>
+<h3><span id="문제-이해">문제 이해</span></h3>
+<p>가장 중요한 단계라고 생각한다. 이 단계에서 정확하게 상황을 이해한다면 나머지 단계는 이행만 하면 되기 때문이다.</p>
+<p><strong>그러면 일반적 문제 이해를 어떻게 하면 올바르게 할 수 있을까?</strong></p>
+<ul>
+<li>문제 상황에 대해 주어진 조건과 정보를 바르게 이해하고 파악하기</li>
+<li>문제가 무엇인지 문제의 상황과 조건을 바탕으로 논리적 사고에 의해 문제를 분석</li>
+<li>문제를 다양한 측면에서 이해하고 바라볼 수 있는 통합적 사고</li>
+</ul>
+<p><strong>그러면 컴퓨팅 기반 문제 이해를 어떻게 하면 올바르게 할 수 있을까?</strong></p>
+<ul>
+<li>주어진 자료를 가지고 규칙이나 패턴을 찾아서 문제를 재 정의 한다.</li>
+</ul>
+<p>책에서 말한 내용이지만 내생각을 표현해 보면 주어진 조건과 상황들을 조합하여 유추하고 결론을 이끌어 내며 편협적이지 않고 다양한 시선으로 생각하여 문제를 이해하는 능력을 말한다고 생각한다.</p>
+<h3><span id="절차적-문제해결의-과정">절차적 문제해결의 과정</span></h3>
+<blockquote>
+<p>문제해결 과정이란 문제를 해결하기 위해 필요한 절차 혹은 순서로 현재 상태에서 목표 상태로 도달하기 위한 일련의 인지적 처리 및 사고 활동의 과정을 순차적으로 나열하는 것… 여기서 말하는 절차 혹은 순서란 목제해결을 위한 인지적 처리 과정을 정해진 순서에 따라 하나씩 단계별로 나열하는 것으로, 우리는 이를 ‘절차적 문제해결 과정’ 이라고 한다.</p>
+</blockquote>
+<h4><span id="종이접기">종이접기</span></h4>
+<p>절차적 문제를 해결하는 적절한 예이다.<br>
+종이접기를 하려면 접는 순서데로 해야 원하는 종이접기 결과물을 만들어 낼 수 었다.</p>
+<p>문제해결 하는 과정에서도 마찬가지라 생각이 든다. 목표로 하는 결과를 얻기 위해서 내가 어떤 과정을 밟아야 도달 할 수 있을까? 라는 생각하면서 논리적 사고력을 통해 절차를 만들어 가는게 정말 중요한 능력이라 생각한다.</p>
+<h3><span id="알고리즘이란">알고리즘이란?</span></h3>
+<blockquote>
+<p>어떠한 주어진 문제를 해결하기 위한 절차적 순서나 방법</p>
+</blockquote>
+<p>위에서 말한것 처럼 절차적인 사고를 통해 문제 해결을 한다고 하였는데 여기서 절차적인 사고를 표현 하는 방식이 알고리즘 이다.</p>
+<h3><span id="자료구조란">자료구조란?</span></h3>
+<p>자료(데이터)를 정확하고 빠르게 얻기 위해 자료를 잘 정돈(구조화)하는 것을 말한다.</p>
+<h3><span id="왜-자료구조가-필요할까">왜 자료구조가 필요할까?</span></h3>
+<p>방금 위에서 말하였지만 데이터를 정확하고 빠르게 얻기 위해서이다.<br>
+일상 생활에서 예를 들면 출근 시간이 늦어 빨리 옷을 입어야 하는 상황인데 옷정리를 하나도 하지 않고 심지어 겨울인데 여름옷이랑 섞여 있는 경우와 옷장에 용도와 계절에 맞게 구조적으로 정리된 옷장을 봤을때 어느 케이스가 더 정확하고 빠르게 옷을 골라 입을 수 있을까??</p>
+<p>컴퓨터 입장에서도 옷을 고르기 위해, 데이터를 정화하고 빠르게 얻기 위해 그에 맞는 자료 구조화가 필요한것이다.</p>
+<h3><span id="논리적-사고란">논리적 사고란</span></h3>
+<blockquote>
+<p>논리적 사고는 문제에서 해답을 이끌어 내는 과정이 타당하고, 분석적이며, 단계적인 사고를 의미. 논리적 사고는 문제해결 과정의 단계에 대한 조건 및 근거를 명확히 해야 하며, 이는 서로 유기적인 관계를 가져야 한다. ~~ 논리적이란 애매모한 것을 분명하게 밝힐 수 있어야 하며 논리적 사고력은 애매성에서 벗어나 명확성, 정확성을 갖출 수 있게 생각을 구체화 시키고 발전시켜 나갈 수 있어야 한다.</p>
+</blockquote>
+<h3><span id="논리적-사고의-중요성">논리적 사고의 중요성</span></h3>
+<p>문제 해결을 하기 위해서는 절차적 사고가 필요하고 그 절차가 정확하려면 논리적인 사고가 필수 이다.  프로그래머가 어떤 기능 크게는 아키텍처를 구상한다고 했을 때 정확한 논리적 사고를 바탕으로 결론을 도출해야 정확한 기능과 서비스가 나온다고 생각한다.<br>
+논리적 사고는 프로그래머에 역량중에 역량이다.</p>
+<h3><span id="논리적-사고력-기르기">논리적 사고력 기르기</span></h3>
+<h4><span id="생각하는-습관">생각하는 습관</span></h4>
+<p>평소 접하는 무엇이든 논리적으로 생각하는 습관을 길러야 한다.</p>
+<h4><span id="상대-논리의-구조화">상대 논리의 구조화</span></h4>
+<p>하고자 하는 일에 실패했을 때 문제 논리를 구조화 하고 원인 분석을 통해 논리를 재구조화 하여 문제를 해결 해야 한다.</p>
+<h4><span id="구체적인-생각">구체적인 생각</span></h4>
+<p>나의 생각을 구체적으로 표현해야 한다. 예를 들어 그림을 그린다거나 도식으로 표현한다거나 나만의 편리하고 확실한 방법을 이용해 머릿속 생각을 끄집어 내어 구조화 시켜 뚜렷하게 생각을 표현하는 것이 중요하다.</p>
+<h4><span id="타인에-대한-이해">타인에 대한 이해</span></h4>
+<p>상대방에 대한 생각과 논리를 피드백 삼아 나의 논리에 밑거름이 되게 하자</p>
+<h4><span id="설득">설득</span></h4>
+<p>논리적 사고는 고정된 생각이 아니다. 타인과 의논하면서 내가 깨닫지 못했던 내용을 발견하고 생각해 낼 수 있다.</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/01/13/회고/2018년 회고/" data-toggle="tooltip" data-placement="top" title="2018년 회고 - 시행착오">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/01/03/OS/[OS] 내가 작성한 코드가 메모리에서 어떻게 실행 될까/" data-toggle="tooltip" data-placement="top" title="내가 작성한 코드가 메모리에서 어떻게 실행 될까">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+                
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">들어가며</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">문제란?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">문제해결이란?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">일반적 문제해결 과정</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">컴퓨팅 기반 문제해결 과정</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">문제 이해</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">절차적 문제해결의 과정</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.1.</span> <span class="toc-nav-text">종이접기</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">알고리즘이란?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">자료구조란?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">왜 자료구조가 필요할까?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">논리적 사고란</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">논리적 사고의 중요성</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">13.</span> <span class="toc-nav-text">논리적 사고력 기르기</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">13.1.</span> <span class="toc-nav-text">생각하는 습관</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">13.2.</span> <span class="toc-nav-text">상대 논리의 구조화</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">13.3.</span> <span class="toc-nav-text">구체적인 생각</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">13.4.</span> <span class="toc-nav-text">타인에 대한 이해</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">13.5.</span> <span class="toc-nav-text">설득</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Book" title="Book">Book</a>
+                        
+                          <a class="tag" href="/tags/#개발일반" title="개발일반">개발일반</a>
+                        
+                          <a class="tag" href="/tags/#메타" title="메타">메타</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Yungwang";
+    var disqus_identifier = "https://biggwang.github.io/2019/01/04/메타인지/[meta] 개발자 논리적인 사고력에 대해서/";
+    var disqus_url = "https://biggwang.github.io/2019/01/04/메타인지/[meta] 개발자 논리적인 사고력에 대해서/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yungwang Ryu 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" rel="external nofollow noopener noreferrer" target="_blank">BeanTech</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://biggwang.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-128907631-1';
+    var _gaDomain = 'https://biggwang.github.io/';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://biggwang.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="개발 무기고">
+    <meta name="keyword" content="">
+    <meta property="og:title" content="류윤광의 개발 블로그">
+    <meta property="og:description" content="개발 무기고">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          2018년 회고 - 시행착오 - 류윤광의 개발 블로그
+        
+    </title>
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/01/13/회고/2018년 회고/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css"> -->
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/01/13/회고/2018년 회고/">
+
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <!-- <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('bg_computer.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/BeanTechSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#회고" title="회고">회고</a>
+                            
+                        </div>
+                        <h1>2018년 회고 - 시행착오</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yungwang Ryu on
+                            2019-01-13
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">백문이불여일견</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1><span id="overview">Overview</span></h1>
+<p>시행착오가 참 많았던 2018년 이었다.<br>
+다른 개발자 블로그를 많이 보면서 회고에 필요성을 느껴 처음 2018년도 회고를 작성해 본다.</p>
+<h1><span id="목차">목차</span></h1>
+<ul>
+<li>
+<p><strong>2018년 나의 키워드</strong></p>
+<ul>
+<li>습관</li>
+<li>멀티 스레드</li>
+<li>본질, 프로그래머 본질적 능력, 역량</li>
+</ul>
+</li>
+<li>
+<p><strong>습관 만들기</strong></p>
+<ul>
+<li>독서</li>
+<li>나의 계획 실천 프레임워크</li>
+</ul>
+</li>
+<li>
+<p><strong>개발 자취</strong></p>
+<ul>
+<li>매일 알고리즘 문제 풀기</li>
+<li>패스트캠퍼스 컴퓨터 공학 인강</li>
+<li>TIL</li>
+<li>토이프로젝트</li>
+</ul>
+</li>
+<li>
+<p><strong>반성</strong></p>
+<ul>
+<li>하루에 할 수 있는 것만!</li>
+</ul>
+</li>
+<li>
+<p><strong>2018년 마무리</strong></p>
+</li>
+<li>
+<p><strong>2019년에는?</strong></p>
+</li>
+</ul>
+<h2><span id="2018년-나의-키워드">2018년 나의 키워드</span></h2>
+<h3><span id="습관">습관</span></h3>
+<p>독서를 통해 습관에 중요성을 깨닳았고 습관을 기르기 위해 나름 노력을 많이 했다. 노력한 결과 올해 내가 만든 습관은 아래와 같다.</p>
+<ul>
+<li>독서</li>
+<li>TIL</li>
+<li>계획</li>
+</ul>
+<p>내가 깨닳기도 전에 어느순간 위 행동을 하는데 힘이 전혀 들지 않았다. 해야 되기 때문에 해야 했고 그것은 확실한 동기가 부여된 상태면 실천하는 힘이 나한테 나온다는 것을 깨닳았다.</p>
+<h3><span id="멀티-스레드">멀티 스레드</span></h3>
+<p>올해는 주로 Java단에서 멀티 스레드 환경에서 코딩을 많이 하게 되었고 관련 내용에 무한한 호기심과 관심으로 스스로 공부도 많이 하게 되었다.  버거운 일을 나누어서 처리하여 다시 취합하여 결과를 얻어내는 것이 참 매력적으로 다가왔다.</p>
+<h3><span id="본질">본질</span></h3>
+<p>개발자 실력은 본질적 능력을 키워야 한다는 것에 격한 공감을 가지게 되어 프로그래머로 본질적 능력을 어떻게 키워야 하는지에 관심을 많이 갖고 키우려 노력하였다.</p>
+<ul>
+<li>문제해결 능력</li>
+<li>논리력</li>
+<li>새로운 개념 습득/적용 능력</li>
+</ul>
+<p>이것이 내가 생각하는 프로그래머가 가져야 하는 역략이자 본질적 능력이라 생각한다. 올해는 본질적 능력이 무엇인지에 대한 답만 알게 되었고 실질적 실천은 내년에는 <strong>의도적 수련</strong>을 통해 능력을 향상 시키자</p>
+<p>이러한 생각을 정립하게 된 것은 많은 선배 개발자님들에 지식 공유가 없었다면 영감도 얻지 못했을 것이다. 공유해주셔서 감사 드리며 영감을 얻은 경로는 아래와 같다.</p>
+<ul>
+<li><a href="https://goo.gl/26K1HE" rel="external nofollow noopener noreferrer" target="_blank">개발자의 평생공부 | 임백준</a></li>
+<li><a href="https://goo.gl/az65WJ" rel="external nofollow noopener noreferrer" target="_blank">개발자의 생명은 커뮤니케이션 능력 | 임백준</a></li>
+<li><a href="https://goo.gl/dFzW2M" rel="external nofollow noopener noreferrer" target="_blank">개발자처럼 생각하는 방법 - 문제 해결의 교훈 | 오역 유발자 의 IT 블로그 번역(번역자), Richard Reis(저자)</a></li>
+<li><a href="https://goo.gl/LpeFdB" rel="external nofollow noopener noreferrer" target="_blank">오픈소스 개발자 이야기 20170701_오픈소스 개발자의 공부방법 | 강대명</a></li>
+</ul>
+<p>이 밖에 많은 개발자분들이 올려주신 글을 읽고 영향을 받아 어떤 능력이 필요하고 체화시켜야 하는지 알게 되어 내년에는 더 확실하게 묙표를 세울 수 있게 되었다.</p>
+<h2><span id="습관-만들기">습관 만들기</span></h2>
+<h3><span id="독서">독서</span></h3>
+<p>올해 가장 잘한 일 중에 하나가 독서하는 습관을 만들었다는 것이다.<br>
+왜냐하면 다양한 분야에 책을 읽는 과정에서 공감, 까닳음, 반성, 동기부여, 삶의 계획 등 많은 것을 느끼게 해주었고 그것들은 내가 인생을 어떻게 살아야 겠다라는<br>
+가이드? 역활을 해주어서 삶을 계획하고 주체적으로 살아 갈 수 있게 해주었기 때문이다.</p>
+<p>집근처 도서관이 있는것을 보고 한번 가볼까? 하고 아내랑 도서관을 들어가봤다.<br>
+충격이었다. 남녀노소 공부하는 열기가 장난 아니었기 때문이었다. 더불어 수많은 책들의 제목만 봐도 그동안 내가 궁금해었던 주제들 보고 싶었던 책이 많다는것과<br>
+더 놀라운것은 내가 정말 지적 호기심이 많은 사람이었다는것을 깨닳은 것이었다.</p>
+<p>그 날부터 평균 1주에 1권씩 책을 읽어 나갔고 주로 프로그래밍 관련 된 책이었지만 그 외 인문, 과학, 자기개발 책들도 읽었다.</p>
+<h4><span id="1년-70권">1년 70권</span></h4>
+<p>1년 100권이 목표였지만 올해는 70권을 읽었다기 보다 70권 정도 대출한것이다. 책을 볼때 0부터 100까지 끝까지 읽을때도 있고 아닐때도 있기 때문에 70권을 다 읽은 것은 아니다.<br>
+하지만 30년 살면서 올해가 가장 많이 책을 읽었고 그만큼 독서의 중요성을 알게된 중요한 해이기도 했다.</p>
+<h4><span id="하지만-독서-노트는">하지만 독서 노트는…</span></h4>
+<p>독서를 하고나서 얻은 지식을 써먹거나 실천하기 위해서는 메모를 하던가 장기기억으로 만들어야 한다.<br>
+독서 노트를 통해 내가 그당시 얻은 영감, 생각, 느낀점, 앞으로 계획 등을 적음으로써 내용을 반복하고 실천하고 장기기억으로 이루어져 생각이 바뀌고 실천 할 수 있다.</p>
+<p>하지만 책을 많이 읽은 만큼 적은 독서노트는 5개정도 밖에 되지 않는다… 얻은 지식을 체화시키지 않으면 밑빠지 독에 물붓기 밖에 되지 않으니 내년에는 독서 노트 반드시 적도록 하자</p>
+<h4><span id="프로그래밍-책">프로그래밍 책</span></h4>
+<p>관련 내용이 없는 책이 없을 정도로 다양한 주제로 된 책들이 엄청나게 많이 나와있다. 욕심이 많아 다 읽고 싶어 닥치는데로 빌려보고 사고 하였지만 결국 전략이 필요헀다.</p>
+<p><strong>머릿속에 남는게 없다.</strong><br>
+책을 다 읽었다고 내 지식이 되지 않는다… 그냥 책을 1권 읽었다 성취감만 느기고 싶어 책만! 읽는것이다. 내것으로 만드는 전략없이 즉, 의도적인 행위 없이 글만 본것은 도로아미타불이다…</p>
+<p><strong>그럼 전략은?</strong></p>
+<ul>
+<li>읽는 목적을 분명히 한다.
+<ul>
+<li>특정 주제를 보고 싶은가? 그러면 목차보고 관심있는 주제부터 보자 그래야 집중력과 머릿속에 잘 기억에 남는다.</li>
+<li>0부터 100까지 봐야 하는가? 그러면 목차를 쭉 스캔하고나서 읽되 특정 구절에 나의 생각을 적으면서 그날 읽은 것을 독서노트에 적고 반드시 내용을 공유하자<br>
+그리고 반복과 실천 뿐이다.</li>
+<li>책을 더럽게 보자</li>
+</ul>
+</li>
+</ul>
+<h3><span id="나의-계획-실천-프레임워크">나의 계획 실천 프레임워크</span></h3>
+<p>독서를 하면서 내가 이루고 싶은 것들을 이루기 위해서 체계적인 계획이 있어야 동기부여도 되면서 내가 무엇을 해야 하는지 딱 정해놔야 내가 실천 잘 할 수 있다는 것을 깨닳게 되어 고민해서 만든 나의 실천 프레임워크를 만들어 보았다.</p>
+<h4><span id="evernote">Evernote</span></h4>
+<img src="/2019/01/13/회고/2018년%20회고/evernote.png">  
+<p>제일 먼저 사용했던 앱으로 계획에 대한 진행 상황을 한눈에 볼 수 없다는 단점이 있어서 Notion 갈아타게 되었다.</p>
+<h4><span id="notion">Notion</span></h4>
+<p>메모앱 끝판왕이라고 할 수 있다.<br>
+자유롭게 내가 하고 싶은 포맷을 바꿀수 있어 편리하다.</p>
+<p>계획을 보기 편하고 잘 짜기 위해 여러 앱을 사용해보았다.<br>
+계획을 짜면서 느낀점은 하루에 내가 할 수 있는 양을 정확히 알고 그선 안에서 해야 한다는 것이다.</p>
+<h2><span id="개발">개발</span></h2>
+<h3><span id="매일-알고리즘-문제-풀기">매일 알고리즘 문제 풀기</span></h3>
+<p>알고리즘 자체를 하기 위한 것이 아니라 논리력, 문제해결 능력을 키우기 위해 시작하였다.<br>
+하지만 시간이 많이 소요되고 전략없이 무작정 풀려고만해서 그런지 재미도 없고 금방 지쳐서 꾸준히 못했다.<br>
+약한 분야이다 보니 기반지식, 의식적 수련이 많이 필요한것을 느꼈다.</p>
+<p>중요한 능력인 만큼 내년에는 반드시 매일 실천 할 것이며 해당 습관을 만들기 위해 Github에 실천 <a href="https://goo.gl/VdhQoz" rel="external nofollow noopener noreferrer" target="_blank">repo</a>를 생성하였다.<br>
+내년에는 반드시 코딩 문제를 풀면서 사고력과 논리력을 키워 기본기가 탄탄한 프로그래머가 되자</p>
+<h3><span id="패스트캠퍼스-컴퓨터-공학-인강">패스트캠퍼스 컴퓨터 공학 인강</span></h3>
+<p>OS에 대한 개념은 확실히 많이 알게 되었다.<br>
+내년에는 컴퓨터 구조, 리눅스, C/C++, Phython 까지 모두 완강하고 정리까지 마쳐야 겠다.</p>
+<h3><span id="til">TIL</span></h3>
+<p>하루를 정말 쌓아가는 느낌을 들게 해주는 역활이었던거 같다.<br>
+비록 2달째 정도 거의 빠지지 않고 잘 유지하고 있는데 내년에도 계속 이어나가 내가 알게 된 지식을 잘 정리하고 장기기억으로 이어질수 있도록 하자</p>
+<h3><span id="토이프로젝트">토이프로젝트</span></h3>
+<ul>
+<li>일단 제대로 완성 시킨것은 없다…</li>
+<li>개발범위를 너무 넓게 잡고 개발기간도 너무 오래 잡아 타이트 하지 않아 집중려고 떨어 졌다.</li>
+<li>내년에는 2주짜리, 3개월짜리 개발기간을 딱 정하고 평소 해보고 싶었던 기술을 써보아서 나의 개발 무기를 추가해보자</li>
+</ul>
+<h1><span id="반성">반성</span></h1>
+<h2><span id="하루에-할-수-있는-것만">하루에 할 수 있는 것만!</span></h2>
+<p>하고싶은것은 많아 무리하게 계획하여 하루에 다 못이루는 경우가 많았다…<br>
+욕심이 많아 얼른 머릿속에 지식을 넣고 싶지만 지식을 내것으로 만드는 과정은 그렇게 빨리 이루어지지 않는다느것 이해와 반복이 계속 수반되어야 체화 되는 것을 다시 한번 알게 되었다.<br>
+내가 하루에 얼마나 투자 할 수 있을지 시간을 계산해보고 그 범위내에서 계획하고 꾸준히 이루어 나가자</p>
+<h1><span id="2018년-마무리">2018년 마무리</span></h1>
+<p>참 많이 시도도 해보고 성장도 많이 한 한해인거 같다.<br>
+책도 많이 읽었고 계획한것을 잘 실천하기 위해 메모앱을 활용하면서 시도도 많이 해보고 지금은 시행착오에 대한 결과로 나만의 실천 프레임워크가 잘 정착된거 같다.<br>
+육아 하면서 짬짬히 시간내기가 정말 힘들었지만 그것또한 이제 익숙해져서 시간도 잘 활용하고 있다.<br>
+내년 2019년도에는 지금보다 훨씬 더 큰 폭으로 성장 할 것이라는 확신이 든다.<br>
+이제 나의 실천 프레임워크 기반 위에서 해야 할 플랜을 잘 실천하자 내년에는 참 많이 달라진 내모습을 기대하면서 기록은 마무리 하겠다.</p>
+<h1><span id="내년에는">내년에는?</span></h1>
+<ul>
+<li>프로그래머 필수 역량 논리력, 문제해결능력 이 본질적인 능력을 키우는 것을 최우선으로 한다.</li>
+<li>영어 듣고, 말하고, 쓰고, 읽고가 되는 실력을 만들자, 영어 레퍼런스 문서, 책, 유트브영상 보는데 부담이 없을 정도로 만든다.</li>
+<li>웹에서 류윤광이라는 개발자를 알리고 개발자들 사이에 편리한 서비스 및 아이디어를 구상하여 개발자들에게 편리함을 줘보자</li>
+<li>구상한 토이프로젝트는 반드시 기간 맞춰서 완성도 있게 완성 시킨다.</li>
+</ul>
+<h1><span id="내년에는">내년에는?</span></h1>
+<h2><span id="쳬계적인-시간-관리">쳬계적인 시간 관리</span></h2>
+<h3><span id="평일-투자-가용-시간">평일 투자 가용 시간</span></h3>
+<ul>
+<li>출/퇴근 시간(100분)</li>
+<li>점심 시간(50분)</li>
+<li>자기전 까지(3시간)</li>
+</ul>
+<p><strong>약 5시간 30분이다.</strong></p>
+<h3><span id="시간간분배">시간간분배</span></h3>
+<ul>
+<li>출/퇴근: 독서/개발자 블로그 보기</li>
+<li>점심: 코딩문제</li>
+<li>집 22:00 ~ 23:00: TIL</li>
+<li>집 23:00 ~ 23:30: 영어</li>
+<li>집 23:30 ~ 01:30: 개인개발공부</li>
+</ul>
+<h4><span id="출퇴근-독서개발자-블로그-보기">출/퇴근 독서/개발자 블로그 보기</span></h4>
+<p>독서 할 떄 이제는 양보단 질이다. 빨리 읽고 다른거 읽자 이런 마인드보다 한구절이라도 나를 울려 나의 행동과 생각을 깨뜨릴수 있도록 소중히 읽도록하자</p>
+<ul>
+<li>그날 읽은 내용 그날 독서노트 정리</li>
+<li>정리 시간은 TIL 시간에 할애 하자</li>
+</ul>
+<h4><span id="점심-코딩문제">점심 코딩문제</span></h4>
+<p>반드시 습관을 만들어야 한다.</p>
+<ul>
+<li>문제 해결 전략을 만들어보자</li>
+<li>30분 투자해도 안되면 다른 사람의 답과 비교해 보자</li>
+<li>뭐가 문제인지 정확히 파악하고 해당 내용을 Github에 실천 <a href="https://goo.gl/VdhQoz" rel="external nofollow noopener noreferrer" target="_blank">repo</a>에 적자</li>
+<li>다시 첨부터 풀어보자</li>
+</ul>
+<h4><span id="집-2200-~-2300-til">집 22:00 ~ 23:00: TIL</span></h4>
+<ul>
+<li>반드시 1시간만 투자한다. 다른거 할 꺼 많음 이거에 너무 많은 시간투자 하지는 말자</li>
+<li>너무 내용이 많으면 큰 덩이리들로만 한번 다 적고 나머지 디테일은 주말찬스를 쓰도록 하자</li>
+</ul>
+<h4><span id="집-2300-~-2330-영어">집 23:00 ~ 23:30: 영어</span></h4>
+<ul>
+<li>2019년 가장 중요한 목표중에 하나</li>
+<li>발음,강세,리듬을 신경쓰면서 영어와 친해지자</li>
+<li>한문장이라도 제대로 파악하고 입에 연습한다.</li>
+</ul>
+<h4><span id="집-2330-~-0130-개인개발공부">집 23:30 ~ 01:30: 개인개발공부</span></h4>
+<ul>
+<li>이왕이면 업무 할 때 할 수 없는 기술들을 사용해 보는 시간을 가지자</li>
+<li>주로 토이프로젝트 할 때 시간을 할애 하자</li>
+</ul>
+<h2><span id="토이프로젝트">토이프로젝트</span></h2>
+<p>만들고 싶은 주제를 선정하여 짧으면 1달 길면 3개월 정도 걸리는 범위를 정하고 플젝을 만들자.<br>
+질질 끌게 되면 지치고 성취감도 느낄수 없게된다.<br>
+일단 목표치까지 만들고 살을 붙이 도록 하자</p>
+<h2><span id="프로그래밍-기본-본질에-충실하기">프로그래밍 기본, 본질에 충실하기</span></h2>
+<p>토이보다 중요한건 프로그래밍 기본과 본질적 능력을 의식적인 노력을 키우는 것이다.</p>
+<ul>
+<li>컴퓨터 구조, OS, 전산 관련 필수 지식을 확실히 내것을 만들기</li>
+<li>클린코드, TDD, 리펙토링, 디자인패턴, OOP 특정 라이브러리 프레임워크 의존없이 개발에 기본기를 탄탄히 하여야 한다.</li>
+</ul>
+<h2><span id="영문-레퍼런스-문서-술술~~">영문 레퍼런스 문서 술술~~</span></h2>
+<p>답은 거의 레퍼런스 문서에 다있다. 읽을줄 알면 신세계다. 반드시 독해능력을 향상 시키자</p>
+<h2><span id="영어-컨텐츠-영상-쏙쏙~~">영어 컨텐츠 영상 쏙쏙~~</span></h2>
+<p>국내 컨텐츠는 빙산의 일각이다. 귀가 뚫리면 더많이 알 수 있다.</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/02/01/회고/2019년도 첫 실천 1월 회고/" data-toggle="tooltip" data-placement="top" title="2019년도 첫 실천 1월 회고">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/01/04/메타인지/[meta] 개발자 논리적인 사고력에 대해서/" data-toggle="tooltip" data-placement="top" title="개발자 논리적인 사고력에 대해서">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+                
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Overview</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">목차</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">2018년 나의 키워드</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.1.</span> <span class="toc-nav-text">습관</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.2.</span> <span class="toc-nav-text">멀티 스레드</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.3.</span> <span class="toc-nav-text">본질</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">습관 만들기</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.1.</span> <span class="toc-nav-text">독서</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.1.1.</span> <span class="toc-nav-text">1년 70권</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.1.2.</span> <span class="toc-nav-text">하지만 독서 노트는…</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.1.3.</span> <span class="toc-nav-text">프로그래밍 책</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.2.</span> <span class="toc-nav-text">나의 계획 실천 프레임워크</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.2.1.</span> <span class="toc-nav-text">Evernote</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.2.2.</span> <span class="toc-nav-text">Notion</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">개발</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">매일 알고리즘 문제 풀기</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">패스트캠퍼스 컴퓨터 공학 인강</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">TIL</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.4.</span> <span class="toc-nav-text">토이프로젝트</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">반성</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">하루에 할 수 있는 것만!</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">2018년 마무리</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">내년에는?</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">내년에는?</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.</span> <span class="toc-nav-text">쳬계적인 시간 관리</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.1.</span> <span class="toc-nav-text">평일 투자 가용 시간</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.2.</span> <span class="toc-nav-text">시간간분배</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.2.1.</span> <span class="toc-nav-text">출/퇴근 독서/개발자 블로그 보기</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.2.2.</span> <span class="toc-nav-text">점심 코딩문제</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.2.3.</span> <span class="toc-nav-text">집 22:00 ~ 23:00: TIL</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.2.4.</span> <span class="toc-nav-text">집 23:00 ~ 23:30: 영어</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.1.2.5.</span> <span class="toc-nav-text">집 23:30 ~ 01:30: 개인개발공부</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.2.</span> <span class="toc-nav-text">토이프로젝트</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.3.</span> <span class="toc-nav-text">프로그래밍 기본, 본질에 충실하기</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.4.</span> <span class="toc-nav-text">영문 레퍼런스 문서 술술~~</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.5.</span> <span class="toc-nav-text">영어 컨텐츠 영상 쏙쏙~~</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#회고" title="회고">회고</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Yungwang";
+    var disqus_identifier = "https://biggwang.github.io/2019/01/13/회고/2018년 회고/";
+    var disqus_url = "https://biggwang.github.io/2019/01/13/회고/2018년 회고/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yungwang Ryu 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" rel="external nofollow noopener noreferrer" target="_blank">BeanTech</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://biggwang.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-128907631-1';
+    var _gaDomain = 'https://biggwang.github.io/';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://biggwang.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

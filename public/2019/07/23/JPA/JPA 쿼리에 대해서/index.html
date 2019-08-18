@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="개발 무기고">
+    <meta name="keyword" content="">
+    <meta property="og:title" content="류윤광의 개발 블로그">
+    <meta property="og:description" content="개발 무기고">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          JPA 쿼리에 대해서 - 류윤광의 개발 블로그
+        
+    </title>
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/07/23/JPA/JPA 쿼리에 대해서/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css"> -->
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/07/23/jpa/jpa 쿼리에 대해서/">
+
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <!-- <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('bg_computer.jpg')
+            /*post*/
+        
+    }
+    
+    #signature{
+        background-image: url('/img/signature/BeanTechSign-white.png');
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Learnning" title="Learnning">Learnning</a>
+                            
+                        </div>
+                        <h1>JPA 쿼리에 대해서</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yungwang Ryu on
+                            2019-07-23
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">백문이불여일견</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h1><span id="학습목표">학습목표</span></h1>
+<ul>
+<li>JPA 쿼리를 왜 사용하는지 이해한다.</li>
+<li>JPA 쿼리 종류가 어떤것이 있으며 각 장/단점을 각 상황에 따라 실무에 적용 할 줄 안다.</li>
+</ul>
+<h1><span id="jpa-쿼리-쿼리를-안써도-되는-줄-알았는데">JPA 쿼리!?!? 쿼리를 안써도 되는 줄 알았는데??</span></h1>
+<p>JPA를 공부하면서 가장 큰 착각 중에 하나였다.<br>
+아직도 의문점이 드는게 있고 완벽하진 않지만 하나하나 궁금증을 해결해 가면서 지식을 내것으로 만들어 보겠다.</p>
+<h2><span id="패러다임-불일치-해결">패러다임 불일치 해결</span></h2>
+<p>JPA를 입문할 때 가장 많이 들었던 용어중 하나 였다.<br>
+의미는 객체지향과 관계지향에 성격이 다른 것을 ORM을 통해 그 불일치를 해결해 준다는 것이다. 나같은 경우는 JAVA 와 RDBMS 였다.</p>
+<h2><span id="그럼-왜-패러다임-불일치를-해결-할까">그럼 왜 패러다임 불일치를 해결 할까?</span></h2>
+<p>사실 내가 여태껏 웹 개발을 경험하면서 대부분에 비지니스 로직에 초점은 결국 쿼리를 어떻게 작성하느냐고 그 쿼리에 맞춰 DAO, Service, Controller 순으로 개발 하였다.<br>
+JPA 를 쓰기전에는 Mybatis를 사용하였고 각 기능마다 CRUD 쿼리를 작성해주어야 했다.<br>
+내가 말하고 싶은 포인트는 자바 OOP로 개발해야 소프트웨어가 변경에 flexible하고 쉬운 유지보수를 할 수 있는데 쿼리 중심으로 맞춰 개발 하다 보니 객체지향 프로그래밍에 장점을 살리지 못하고 있는 것이다.</p>
+<p>어쨋든 프로그래밍을 하면서 데이터는 RDB에 넣긴 해야 한다.  넣어야 하는데 그것을 테이블간에 관계도를 생각하면서 쿼리를 작성하는데 초점을 두는것이 아니라 객체간에 관계 참조를 쉽게 코드로 표현 하고 그 표현을 해석하는 ORM, Hibernate, JPA, 영속성 컨텍스트가 감지하여 쿼리를 만들어 DB에 영속화 시키는 것이다.</p>
+<p>이런 중간 역활을 ORM을 함으로써 개발 할 때, 데이터를 영속화 할 때 객체지향으로 개발할 수 있다는점에서 패러다임 불일치를 해결 한다고 말한다고 생각한다.</p>
+<p>다시 돌아서 제일 처음 궁금증에 대해서 다시 생각해 보면,  ORM, JPA가 패러다임 불일치를 해결한다고 했으니까 나는 쿼리를 작성안하고 객체지향 프로그래밍을 하면 영속성 컨텍스트에서 알아서 쿼리를 만들고 DB에 쿼리를 날리는 것을 생각 하였다.</p>
+<p>하지만 일부만 맞다고 생각이 든다. 왜냐하면 단순히 저장(persist), 수정(객체 속성값 변경), 조회(findAll), 삭제(delete) 기능이라면 쿼리를 작성 할 필요도 없다.<br>
+JPA가 제공해주는 정확히 Hibernate 가 제공해주는 API를 사용함으로써 <strong>단순 CRUD에 대한 쿼리 작성은 필요 없는것이다.</strong></p>
+<p>단순 CRUD라고 하였고 <strong>그럼 복잡한 CRUD는 ??</strong> 그때 바로 필요 한게 JPA에서 사용하고 있는 여러 쿼리 작성이 필요 하다고 생각하고 그래서 존재한다고 생각한다.<br>
+복잡한 애플리케이션 일수록 복잡한 쿼리를 요구 하게 되므로 위 간단한 API 호출로는 한계가 있다.</p>
+<p>쿼리라 말하였지만 정확히 객체지향 쿼리이다.<br>
+하지만 이부분은 아직 잘 공감되지 않는 부분이기도 한데, 객체지향 쿼리라고 하지만 객체지향 쿼리도 모양은 결국 쿼리다.  하지만 객체지향 쿼리라고 말하는 이유는 쿼리를 만드는데 타켓이 데이터베이스에 있는것이 아닌 바로 객체 Entity를 가지고 쿼리를 만들기 때문이다.</p>
+<h1><span id="jpa-쿼리-종류-및-장단점">JPA 쿼리 종류 및 장.단점</span></h1>
+<p>가장 중요한것은 JPQL이다.  Criteria 이나 Query DSL은 JPQL을 편리하게 사용 하도록 도와주는 기술일 뿐이다.<br>
+객체지향 쿼리는 DBMS 종류에 관계없이 추상화된 쿼리이니 DBMS를 신경쓰지 않아도 되는 큰 이점이 있다.  본격적으로 쿼리 종류를 알아보면</p>
+<h2><span id="jpqlhql">JPQL(HQL)</span></h2>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String jpql = <span class="string">"select m from Member as m where m.username = 'ryu'"</span>;</span><br><span class="line">List&lt;Member&gt; resultList = </span><br><span class="line">    em.createQuery(jpql, Member.class).getResultList();</span><br></pre></td></tr></table></figure>
+<p>하지만 문자열로 저렇게 작성하면 오타가 나도 컴파일시점이 아닌 런타임 시점에 알 수 있어 외부 변경에 취약하다.</p>
+<h2><span id="criteria">Criteria</span></h2>
+<p>JPQL을 생성하는 빌더 클래스로 Type Safe하게 사용 할 수 있다. (JPA 2.0 부터 지원)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CriteriaBuilder cb = em.getCriteriaBuilder();</span><br><span class="line">CriteriaQuery&lt;Member&gt; query = cb.createQuery(Member.class);</span><br><span class="line"></span><br><span class="line">Root&lt;Member&gt; m = query.from(Member.class);</span><br><span class="line"></span><br><span class="line">CriteriaQuery&lt;Member&gt; cq = </span><br><span class="line">    query.select(m).where(cb.equal(m.get(<span class="string">"username"</span>), <span class="string">"kim"</span>));</span><br><span class="line">List&lt;Member&gt; resultList = em.createQuery(cq).getResultList();</span><br></pre></td></tr></table></figure>
+<p>Type Safe 하게 쿼리를 작성하는 것 말고는 코드가 복잡해 지는 단점이 있다.</p>
+<h2><span id="query-dsl">Query DSL</span></h2>
+<p>Criteria 와 마찬가지로 JPQL 빌더 역활을 하지만 Criteria 보다 간단하고 사용하기 쉽다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">JPAQuery query = <span class="keyword">new</span> JPAQuery(em);</span><br><span class="line">QMember member = QMember.member;</span><br><span class="line"></span><br><span class="line">List&lt;Member&gt; members = </span><br><span class="line">    query.from(member)</span><br><span class="line">    .where(member.username.eq(<span class="string">"kim"</span>))</span><br><span class="line">    .list(member);</span><br></pre></td></tr></table></figure>
+<h2><span id="native-query">Native Query</span></h2>
+<p>특정 DB에서 제공하는 기능을 꼭 쓰고 싶을때 사용한다. 예를 들어 ORACLE DB만 제공하는 CONNECT BY 등이다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String sql = <span class="string">"SELECT ID, NAME FROM MEMBER WHERE NAME = 'kim'"</span>;</span><br><span class="line">List&lt;Member&gt; resultList = </span><br><span class="line">    em.createNativeQuery(sql, Member.class).getResultList();</span><br></pre></td></tr></table></figure>
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/07/25/Docker/Docker로 개발 DB 환경 구성하기/" data-toggle="tooltip" data-placement="top" title="Docker MySql 이미지로 개발 DB 환경 구성하기">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/07/11/OOP/02 객체 지향 프로그래밍/" data-toggle="tooltip" data-placement="top" title="02. 객체 지향 프로그래밍">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+                
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">학습목표</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">JPA 쿼리!?!? 쿼리를 안써도 되는 줄 알았는데??</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">패러다임 불일치 해결</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">그럼 왜 패러다임 불일치를 해결 할까?</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">JPA 쿼리 종류 및 장.단점</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">JPQL(HQL)</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">Criteria</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">Query DSL</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">Native Query</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Learnning" title="Learnning">Learnning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Yungwang";
+    var disqus_identifier = "https://biggwang.github.io/2019/07/23/JPA/JPA 쿼리에 대해서/";
+    var disqus_url = "https://biggwang.github.io/2019/07/23/JPA/JPA 쿼리에 대해서/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yungwang Ryu 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" rel="external nofollow noopener noreferrer" target="_blank">BeanTech</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://biggwang.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-128907631-1';
+    var _gaDomain = 'https://biggwang.github.io/';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://biggwang.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

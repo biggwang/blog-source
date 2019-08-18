@@ -7,6 +7,8 @@
     <meta name="keyword"  content="<%= config.keyword %>">
     <meta property="og:title" content="류윤광의 개발 블로그">
     <meta property="og:description" content="개발 무기고">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}"/>
     <link rel="shortcut icon" href="<%= config.root %>img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
