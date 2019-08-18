@@ -24,8 +24,8 @@ email: ghmryg@gmail.com
 description: "개발 무기고"
 keyword: ""
 header-img: img/header_img/bg_computer.png
-signature: true #show signature
-signature-img: img/signature/BeanTechSign-white.png 
+signature: false #show signature
+signature-img:
 
 
 # SNS settings
@@ -60,14 +60,15 @@ ga_domain: https://biggwang.github.io/
 
 # Sidebar settings
 sidebar: true                       # whether or not using Sidebar.
-sidebar-about-description: "사람에게 도움을 주고싶은 개발자 류윤광입니다."
-sidebar-avatar: img/ryu.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "의식적인 노력으로 지식 체화"
+sidebar-avatar: img/me.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
 widgets:
 - short-about
-- recent-posts
-- featured-tags
-- archive
 - category
+- featured-tags
+- recent-posts
+- archive
+
 # - friends-blog
 
 # widget behavior
@@ -131,7 +132,7 @@ highlight:
 
 # Category & Tag
 default_category: uncategorized
-category_map:
+category_map: true
 tag_map:
 home_posts_tag: true # show posts tags
 
