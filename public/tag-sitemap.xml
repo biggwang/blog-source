@@ -65,13 +65,6 @@
     </url>
 
     <url>
-        <loc>https://biggwang.github.io/tags/Experience/</loc>
-        <lastmod>2019-07-25T13:19:29.469Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://biggwang.github.io/tags/Learnning/</loc>
         <lastmod>2019-08-03T14:11:25.882Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -88,6 +81,13 @@
     <url>
         <loc>https://biggwang.github.io/tags/Book/</loc>
         <lastmod>2019-08-18T06:55:34.986Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/tags/Experience/</loc>
+        <lastmod>2019-08-19T13:04:46.737Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

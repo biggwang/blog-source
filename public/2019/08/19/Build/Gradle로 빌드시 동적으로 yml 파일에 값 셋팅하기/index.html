@@ -18,11 +18,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          About - 류윤광의 개발 블로그
+          Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기 - 류윤광의 개발 블로그
         
     </title>
 
-    <link rel="canonical" href="https://biggwang.github.io/about/">
+    <link rel="canonical" href="https://biggwang.github.io/2019/08/19/Build/Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css"> -->
 
-    <link rel="canonical" href="https://biggwang.github.io/about/">
+    <link rel="canonical" href="https://biggwang.github.io/2019/08/19/build/gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기/">
 
 
 
@@ -79,8 +79,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/Iron-Man-3.jpg')
-            /*page*/
+            background-image: url('bg_computer.jpg')
+            /*post*/
         
     }
     
@@ -93,10 +93,18 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                    <div class="site-heading">
-                        <h1>About</h1>
-                        <!--<hr class="small">-->
-                        <span class="subheading">어제보다 더 보기 좋고 유연한 코드를 작성하자</span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Experience" title="Experience">Experience</a>
+                            
+                        </div>
+                        <h1>Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yungwang Ryu on
+                            2019-08-19
+                        </span>
                     </div>
                 
 
@@ -199,262 +207,148 @@
 
 
     <!-- Main Content -->
-    <!-- Main Content -->
-<div class="container">
-    <div class="row">
-        
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<!-- USE SIDEBAR -->
-    <!-- Post Container -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
-            
-                <h3><span id="중요하게-생각하는-것들">중요하게 생각하는 것들</span></h3>
-<ul>
-<li>하루는 지나가는게 아니라 쌓이는 것</li>
-<li>원하는 것을 이루기위해 나아가려면, 엔진이 목표, 동기 기름은 반복과 습관이다.</li>
-</ul>
-<h3><span id="좋아하는-것">좋아하는 것</span></h3>
-<ul>
-<li>영화나 미드 보면서 맛있는거 먹기</li>
-<li>가족과 함께 좋은 장소에 가서 맛있는거 먹기</li>
-</ul>
-<h3><span id="취미">취미</span></h3>
-<ul>
-<li>유럽 축구 보기</li>
-<li>좋은 노래 수집하기</li>
-</ul>
-<h3><span id="하고싶은-것들">하고싶은 것들</span></h3>
-<ul>
-<li>기타 연주하기, 핑커스타일로!</li>
-<li>1년에 최소 한번 아내랑 해외 여행가기</li>
-<li>혼자 여행 다니기</li>
-</ul>
-<h3><span id="관심사">관심사</span></h3>
-<ul>
-<li>영어회화</li>
-</ul>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
+                <h3><span id="왜-필요했나">왜 필요했나?</span></h3>
+<p>이번에 오픈했던 서비스는 정적 리소스 파일인 css, js, image 들을 CDN을 이용하여 웹 서비스를 제공하고 있습니다.<br>
+하나의 서비스안에 java와 php가 같이 공존하고 있으며 정적 리소스 파일에 변경은 php에서 하고 있습니다. 뒤에 쿼리 스트링 방식으로 날짜시간을 입력하여 적용 된 캐쉬를 무시하고 파일은 반영하기 위함이죠. 하지만 java쪽에서는 여전히 변경되기 전 정적 리소스 파일을 보고 있게 되죠 이를 위해 자바쪽에 참조 하고 있는데 각종 정적 리소스 파일에 대한 timestamp를 변경해줘야 하고 다시 배포해줘야 새로운 정적 리소스 파일을 사용 할 수 있게 됩니다.</p>
+<p>이러한 상황에서 timestamp 값을 yml에 넣고 각 모든 정적 리소스 파일이 참조 할 수 있게 하였고 timestamp 값은 Gradle 빌드시 동적으로 값을 입력 받을수 있게 하였습니다.</p>
+<h3><span id="그래서-어떻게-한-것인가">그래서 어떻게 한 것인가?</span></h3>
+<p>우선 gradle 스크립트입니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*build.gradle*/</span></span><br><span class="line">...</span><br><span class="line">project(<span class="string">':config'</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (project.hasProperty(<span class="string">'serverEnv'</span>)) &#123;</span><br><span class="line"></span><br><span class="line">        def timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern(<span class="string">"yyyyMMddHHmmss"</span>))</span><br><span class="line"></span><br><span class="line">        println(timestamp)</span><br><span class="line">        println(<span class="string">"$&#123;rootProject.projectDir&#125;/config/src/main/resources/"</span>)</span><br><span class="line"></span><br><span class="line">        ant.replaceregexp(match: <span class="string">'staticResourceVersion:.*'</span>, replace: <span class="string">"staticResourceVersion: $&#123;timestamp&#125;"</span>, flags: <span class="string">'g'</span>, byline: <span class="keyword">true</span>) &#123;</span><br><span class="line">            fileset(dir: <span class="string">"$&#123;rootProject.projectDir&#125;/config/src/main/resources/"</span>, includes: <span class="string">'application.yml'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>실제 yml 파일에는 이렇게 값이 들어가 있게 되죠</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">staticResourceVersion: <span class="number">20190819174218</span></span><br></pre></td></tr></table></figure>
+<p>이렇게 셋팅한 후에 Gradle 명령어를 입력하면</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; gradle -x -test <span class="symbol">:config</span><span class="symbol">:build</span> -PserverEnv=develop</span><br></pre></td></tr></table></figure>
+<p>Gradle이 빌드 되면서 yml에 값을 입력하게 됩니다.</p>
+<p>이 방법은 정적 리소스 파일을 적용하기 위해 매번 빌드하고 배포해야하는 번거로움이 있습니다.  개선사항으로 생각하고 있으며 remote config 방식을 활용하여 더 편리해진 정적 파일 리소스 적용 방법을 포스팅하도록 하겠습니다.</p>
 
-                <!-- 如果开启评论功能 -->
                 
-                    <hr>
 
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
                     
+                    
+                        <li class="next">
+                            <a href="/2019/08/18/ETC/서버가 여러대 있때 redirect 사용시 발생하는 문제/" data-toggle="tooltip" data-placement="top" title="서버가 여러대 있때 redirect 사용시 발생하는 문제">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-                    
-                    <!-- disqus 评论框 start -->
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+                
+                <!-- disqus comment start -->
+                
                     <div class="comment">
-                        <div id="disqus_thread" class="disqus-thread"></div>
+                        <div id="disqus_thread"></div>
                     </div>
-                    <!-- disqus 评论框 end -->
-                    
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-                    
-
-                    
-                    <!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
-                    <script type="text/javascript">
-                        /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = "Yungwang";
-                        var disqus_identifier = "https://biggwang.github.io/about/index.html";
-                        var disqus_url = "https://biggwang.github.io/about/index.html";
-
-                        (function() {
-                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                        })();
-
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Experience" title="Experience">Experience</a>
                         
-                    </script>
-                    <!-- disqus 公共JS代码 end -->
-                    
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
                 
             </div>
-
-          <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-    <h5><a href="/about/">ABOUT ME</a></h5>
-    <div class="short-about">
-
-        
-            <img id="avatar_pic" src="/img/me.jpg">
-        
-
-        
-            <p>의식적인 노력으로 지식 체화</p>
-        
-
-        <!-- SNS Link -->
-        <ul class="list-inline">
-            
-            
-            
-
-            
-
-            
-                <li>
-                    <a target="_blank" href="https://www.facebook.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-
-            
-                <li>
-                    <a target="_blank" href="https://github.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-            
-            
-            
-                <li>
-                    <a target="_blank" href="https://www.linkedin.com/in/Yungwang Ryu" rel="external nofollow noopener noreferrer">
-                        <span class="fa-stack fa-lg">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </a>
-                </li>
-            
-        </ul>
+        </div>
     </div>
-</section>
-        <hr>
-    
-        <!-- Categories -->
+</article>
 
-    <h5>categories
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Build/">Build</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Build/Gradle/">Gradle</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/객체지향프로그래밍/">객체지향프로그래밍</a><span class="category-list-count">6</span></li></ul>
-    </div>
-</h5>
-        <hr>
-    
-        <!-- Featured Tags -->
 
-<section>
-    <!-- no hr -->
-    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-    <div class="tags">
-        
-            
-        
-            
-            <a href="/tags/#Design Patterns" title="Design Patterns" rel="4">Design Patterns</a>
-            
-        
-            
-            <a href="/tags/#Learnning" title="Learnning" rel="5">Learnning</a>
-            
-        
-            
-        
-            
-        
-            
-            <a href="/tags/#Book" title="Book" rel="5">Book</a>
-            
-        
-            
-        
-            
-            <a href="/tags/#Experience" title="Experience" rel="2">Experience</a>
-            
-        
-            
-            <a href="/tags/#Framework" title="Framework" rel="2">Framework</a>
-            
-        
-            
-            <a href="/tags/#Spring" title="Spring" rel="2">Spring</a>
-            
-        
-            
-            <a href="/tags/#개발일반" title="개발일반" rel="2">개발일반</a>
-            
-        
-            
-            <a href="/tags/#메타" title="메타" rel="3">메타</a>
-            
-        
-            
-            <a href="/tags/#회고" title="회고" rel="4">회고</a>
-            
-        
-    </div>
-</section>
 
-        <hr>
-    
-        
-  <h5>RECENT POSTS
-  <div class="widget">
-    <ul>
-      
-        <li>
-          <a href="/2019/08/19/Build/Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기/">Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기</a>
-        </li>
-      
-        <li>
-          <a href="/2019/08/18/ETC/서버가 여러대 있때 redirect 사용시 발생하는 문제/">서버가 여러대 있때 redirect 사용시 발생하는 문제</a>
-        </li>
-      
-        <li>
-          <a href="/2019/08/14/회고/첫오픈 준비/">첫 서비스 오픈 준비를 하며</a>
-        </li>
-      
-        <li>
-          <a href="/2019/07/31/OOP/상속보다는 합성을 사용해야 하는 이유/">상속보다는 합성을 사용해야 하는 이유</a>
-        </li>
-      
-        <li>
-          <a href="/2019/07/31/OOP/객체지향 캡슐화 그것이 알고 싶다/">객체지향 캡슐화 그것이 알고 싶다.</a>
-        </li>
-      
-    </ul>
-  </div>
-</h5>
-        <hr>
-    
-        
-    <h5>ARCHIVES</h5>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">5</span></li></ul>
-    </div>
 
-        <hr>
-    
-</div>
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Yungwang";
+    var disqus_identifier = "https://biggwang.github.io/2019/08/19/Build/Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기/";
+    var disqus_url = "https://biggwang.github.io/2019/08/19/Build/Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기/";
 
-        
-    </div>
-</div>
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
 
 
     <!-- Footer -->
