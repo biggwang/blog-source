@@ -4,10 +4,10 @@ catalog: true
 date: 2019-07-25 20:05:15
 subtitle: 
 header-img: "bg_computer.jpg"
-tags: 
-- Experience
 catagories:
 - Spock
+tags: 
+- Experience
 ---
 
 # 들어가며

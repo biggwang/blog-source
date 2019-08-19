@@ -4,7 +4,7 @@ catalog: true
 date: 2019-08-18 09:06:21
 subtitle:
 header-img: "bg_computer.jpg"
-catagories:
+tags:
 - Experience
 ---
 
