@@ -219,6 +219,35 @@
 
 <div class="post-preview">
 
+    <a href="/2019/08/21/Spring/순환참조와 Lazy/">
+        <h2 class="post-title">
+            Configuration 클래스에서 @FeignClient 사용시 순환참조 에러 발생하는 이유
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            왜 순환참조 에러가 발생 하였을까?
+@Configuration을 선언한 클래스에서 2개의 @Autowired를 하였다. 하지만 순환참조 인지 확인하라는 스프링 에러 로그를 보면서 TokenAuthInterceptor 객체안에서 다시 @FeignClient 을 사용하는 객체를 주입받고 있었는데 바로 요놈 @FeignClient를 사용한 그 객체를 주입을......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Yungwang Ryu on
+            2019-08-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Experience" title="Experience">Experience</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/08/19/Build/Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기/">
         <h2 class="post-title">
             Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기
@@ -610,44 +639,6 @@ JPA를 공부하면서 가장 큰 착각 중에 하나였다.
 
 <div class="post-preview">
 
-    <a href="/2019/07/10/JPA/JPA N+1 문제 해결 방법/">
-        <h2 class="post-title">
-            N+1 문제 해결 방법
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            예제 Repository
-류윤광 Github
-학습목표
-
-N+1 문제가 무엇인지 안다.
-그것을 해결하기 위한 방법이 어떤것이 있으면 각 방법에 장단점을 안다.
-실무에 정확히 적용 할 줄 안다.
-
-우선 junit에 테스트 한다면 아래 사항을 주의 하자
-
-junit은 기본적으로 테스트가 끝나면 rollback 되므로 그 영향으로 JPA에 영속성 컨텍스트에서......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Yungwang Ryu on
-            2019-07-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#Learnning" title="Learnning">Learnning</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
     <a href="/2019/07/10/OOP/01 객체,설계/">
         <h2 class="post-title">
             01. 객체,설계
@@ -681,6 +672,44 @@ junit은 기본적으로 테스트가 끝나면 rollback 되므로 그 영향으
         <div class="tags">
             
               <a href="/tags/#Book" title="Book">Book</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/10/JPA/JPA N+1 문제 해결 방법/">
+        <h2 class="post-title">
+            N+1 문제 해결 방법
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            예제 Repository
+류윤광 Github
+학습목표
+
+N+1 문제가 무엇인지 안다.
+그것을 해결하기 위한 방법이 어떤것이 있으면 각 방법에 장단점을 안다.
+실무에 정확히 적용 할 줄 안다.
+
+우선 junit에 테스트 한다면 아래 사항을 주의 하자
+
+junit은 기본적으로 테스트가 끝나면 rollback 되므로 그 영향으로 JPA에 영속성 컨텍스트에서......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by Yungwang Ryu on
+            2019-07-10
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#Learnning" title="Learnning">Learnning</a>
             
         </div>
     
@@ -814,24 +843,19 @@ SRP(Single Responsibility Principle) 단일 책......
 
 <div class="post-preview">
 
-    <a href="/2019/04/17/Design Patterns/[Design Patterns] 옵저버 패턴, 도대체 왜 쓰는거야-기본 이론편/">
+    <a href="/2019/04/17/Design Patterns/[Design Patterns] 팩토리 패턴, 도대체 왜 쓰는거야-실전 적용편/">
         <h2 class="post-title">
-            옵저버 패턴, 도대체 왜 쓰는거야? - 기본 이론편
+            팩토리 패턴, 도대체 왜 쓰는거야? - 실전 적용편
         </h2>
         <h3 class="post-subtitle">
-            옵저버 패턴 파헤치기
+            팩토리 패턴 파헤치기
         </h3>
         <div class="post-content-preview">
-            옵저버 패턴이란?
-
-한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 객체들한테 연락이 가고 자동으로 내용이 갱신되는 방식으로 일대다 의존성을 정희 - 헤드퍼스트 참고
-
-언제 사용할까?
-내가 만든 예제 (구독자에게 미세먼지 전달 하기)
-  
-Publisher, Observer 가 핵심이다. 각 역활은 아래와 같다.
-Observer
-123public i......
+            왜 팩토리 패턴을 적용했는가?
+스케줄링 되는 배치를 개발 중이었다.
+기존 배치(General)가 주기적으로 Source DB에 데이터를 이관하고 있었다. 이후 추가 배치를 개발 해야 되는 상황이 왔다.
+언제나 그랬듯이 항상 수정 및 추가 개발 건이 생긴다.
+추가로 배치를 개발 해야 하는 것은 데이터 무결성을 체크하는 비교 배치, 적재 실패된 데이터를 ......
         </div>
     </a>
     
@@ -851,19 +875,24 @@ Observer
 
 <div class="post-preview">
 
-    <a href="/2019/04/17/Design Patterns/[Design Patterns] 팩토리 패턴, 도대체 왜 쓰는거야-실전 적용편/">
+    <a href="/2019/04/17/Design Patterns/[Design Patterns] 옵저버 패턴, 도대체 왜 쓰는거야-기본 이론편/">
         <h2 class="post-title">
-            팩토리 패턴, 도대체 왜 쓰는거야? - 실전 적용편
+            옵저버 패턴, 도대체 왜 쓰는거야? - 기본 이론편
         </h2>
         <h3 class="post-subtitle">
-            팩토리 패턴 파헤치기
+            옵저버 패턴 파헤치기
         </h3>
         <div class="post-content-preview">
-            왜 팩토리 패턴을 적용했는가?
-스케줄링 되는 배치를 개발 중이었다.
-기존 배치(General)가 주기적으로 Source DB에 데이터를 이관하고 있었다. 이후 추가 배치를 개발 해야 되는 상황이 왔다.
-언제나 그랬듯이 항상 수정 및 추가 개발 건이 생긴다.
-추가로 배치를 개발 해야 하는 것은 데이터 무결성을 체크하는 비교 배치, 적재 실패된 데이터를 ......
+            옵저버 패턴이란?
+
+한 객체의 상태가 바뀌면 그 객체에 의존하는 다른 객체들한테 연락이 가고 자동으로 내용이 갱신되는 방식으로 일대다 의존성을 정희 - 헤드퍼스트 참고
+
+언제 사용할까?
+내가 만든 예제 (구독자에게 미세먼지 전달 하기)
+  
+Publisher, Observer 가 핵심이다. 각 역활은 아래와 같다.
+Observer
+123public i......
         </div>
     </a>
     
@@ -1181,23 +1210,16 @@ DB 접속하여 데이터를 실시간 주기로 데이터를 targetDB에 적재
 
 <div class="post-preview">
 
-    <a href="/2018/12/04/Spring/Spring AOP 적용시 주의사항/">
+    <a href="/2018/12/04/Spring/Spring Validation 처리 방법/">
         <h2 class="post-title">
-            Spring AOP 적용시 주의사항
+            Spring Validation 다양한 처리 방법
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            기반개념
-
-1.Componet Scan
-2.Root-context, servlet-context
-3.Spring AOP 방식
-현상
-
-1.point cut excution 패턴 적용 하였지만 특정 패키지에서만 동작이 되고 Scheduled 사용된 클래스에서는 AOP 적용, 즉 트랜잭션 rollback이 안됨
-2.exception 발생시 catch 문에서......
+            org.springframework.validation 활용
+1234567891011@PostMapping(value = "/leave")public String applyLeave(@ModelAttribute @Valid RequestDto dto,                          Errors erros, RedirectAttribute......
         </div>
     </a>
     
@@ -1219,16 +1241,23 @@ DB 접속하여 데이터를 실시간 주기로 데이터를 targetDB에 적재
 
 <div class="post-preview">
 
-    <a href="/2018/12/04/Spring/Spring Validation 처리 방법/">
+    <a href="/2018/12/04/Spring/Spring AOP 적용시 주의사항/">
         <h2 class="post-title">
-            Spring Validation 다양한 처리 방법
+            Spring AOP 적용시 주의사항
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            org.springframework.validation 활용
-1234567891011@PostMapping(value = "/leave")public String applyLeave(@ModelAttribute @Valid RequestDto dto,                          Errors erros, RedirectAttribute......
+            기반개념
+
+1.Componet Scan
+2.Root-context, servlet-context
+3.Spring AOP 방식
+현상
+
+1.point cut excution 패턴 적용 하였지만 특정 패키지에서만 동작이 되고 Scheduled 사용된 클래스에서는 AOP 적용, 즉 트랜잭션 rollback이 안됨
+2.exception 발생시 catch 문에서......
         </div>
     </a>
     
@@ -1368,7 +1397,7 @@ DB 접속하여 데이터를 실시간 주기로 데이터를 targetDB에 적재
             
         
             
-            <a href="/tags/#Experience" title="Experience" rel="3">Experience</a>
+            <a href="/tags/#Experience" title="Experience" rel="4">Experience</a>
             
         
             
@@ -1402,6 +1431,10 @@ DB 접속하여 데이터를 실시간 주기로 데이터를 targetDB에 적재
     <ul>
       
         <li>
+          <a href="/2019/08/21/Spring/순환참조와 Lazy/">Configuration 클래스에서 @FeignClient 사용시 순환참조 에러 발생하는 이유</a>
+        </li>
+      
+        <li>
           <a href="/2019/08/19/Build/Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기/">Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기</a>
         </li>
       
@@ -1417,10 +1450,6 @@ DB 접속하여 데이터를 실시간 주기로 데이터를 targetDB에 적재
           <a href="/2019/07/31/OOP/상속보다는 합성을 사용해야 하는 이유/">상속보다는 합성을 사용해야 하는 이유</a>
         </li>
       
-        <li>
-          <a href="/2019/07/31/OOP/객체지향 캡슐화 그것이 알고 싶다/">객체지향 캡슐화 그것이 알고 싶다.</a>
-        </li>
-      
     </ul>
   </div>
 </h5>
@@ -1429,7 +1458,7 @@ DB 접속하여 데이터를 실시간 주기로 데이터를 targetDB에 적재
         
     <h5>ARCHIVES</h5>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">5</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">5</span></li></ul>
     </div>
 
         <hr>
