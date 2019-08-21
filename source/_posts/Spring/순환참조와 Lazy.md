@@ -4,7 +4,7 @@ catalog: true
 date: 2019-08-21 22:10:21
 subtitle:
 header-img: "bg_computer.jpg"
-catagories:
+categories:
 - Spring
 tags:
 - Experience
