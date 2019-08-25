@@ -29,12 +29,13 @@ catagories:
 - 라이브 코딩으로 결과를 보여주면서 이해시킨다.
 - 문제를 내고 질문과 대답을 통해 주입식이 아닌 소통으로 듣는 사람이 정말 머릿속에 이해되고 활용 될 수 있도록 하자
 
-### 내가 궁금한 것들
 
-컨테이너란 무엇인가?
+### IoC (Inversion of Control) 란 무엇인가?
 
-IoC (Inversion of Control) 란 무엇인가?
+IoC에 용어는 90년 중반에 GoF의 디자인패턴에서도 이용어가 언급되었다고 합니다. 즉, IoC는 Spring에서 나온 용어가 아닙니다.  
+과거 EJB에서도 WAS에 Servlet Container에서도 사용 된 개념이죠.  
 
+IoC에 대한 개념은 굉장히 폭이 넓습니다.  
 해석하면 제어의 역전입니다. 도대체 어떤 제어를 말하는 것이며 무엇을 역전한다는 말 일까요??
 
 아래 코드부터 바로 보시죠
@@ -68,14 +69,87 @@ public class A {
 ~~~
 
 스프링 사용자라면 잘알고 있는 표현입니다.
-
 B라는 객체가 스프링 컨테이너에게 관리되고 있는 Bean이라면 @Autowired 를 통해 객체를 주입받을수 있게 되죠
-
 이것은 개발자가 직접 객체를 관리하지 않고 스프링 컨테이너에서 직접(제어) 객체를 생성하여 해당 객체에 주입 시켜준 것이죠
 
 이것이 바로 제어가 역전되었다. IoC 라는 개념입니다.
 
+
+디자인패턴인 템플릿 메소드 패턴에서도 IoC 개념을 찾아 볼 수 있습니다. 이처럼 IoC는 프레임워크차원에서도 거시적인 개념이 아닌 프로그램을 제어권을 누가 가져갈것인가에 대한
+프로그래밍 모델일 뿐입니다. 아래 코드를 한번 보죠
+
+
+~~~ java
+public abstract class IronFactory {
+
+    private IronMan ironMan;
+
+    public IronMan getIronMan () {
+        return assemble();
+    }
+
+    /**
+     * 제어권은 상위 클래스에게 있다.
+     * 하위 클래스에서 구현한 코드는 상위 클래스가 어떻게 되는지 모른다. 단지 구현해야하는 부분을  
+    **/
+    private IronMan assemble() {
+        // do assemble.. from head, body, arms, legs
+        return ironMan;
+    }
+
+    protected abstract void head();
+    protected abstract void body();
+    protected abstract void arms();
+    protected abstract void legs();
+}
+~~~
+
+~~~ java
+public classs HulkBuster extends IronFactory {
+
+    @Override
+    public void head() {
+        // do something..
+    }
+
+    @Override
+    public void body() {
+        // do something..
+    }
+
+    @Override
+    public void arms() {
+        // do something..
+    }
+
+    @Override
+    public void legs() {
+        // do something..
+    }
+}
+~~~
+
+제어권은 상위 클래스인 IronFactory에게 있습니다.
+하위 클래스에서 구현한 코드는 상위 클래스가 어떻게 되는지 모른다. 단지 구현해야하는 부분을 구현하였고 구현한 코드가 언제 어떻게 실행 될지는 모른다.  
+상위 클래스에서 알아서 필요할때 구현한 메소드를 사용하는 것이다.  
+
+바로 이처럼 코드 흐름이 제3자에게 위임되는 것이 IoC 모델이라고 합니다.
+
+
 IoC 개념은 스프링에서 나온 개념이 아니라 예전부터 사용되었던 개념입니다. 서블릿 컨테이너 또한 IoC를 통한 서블릿을 관리하고 있죠.
+
+
+### 그럼 왜 IoC를 Spring에서 사용 하였을까요? 분명히 이점이 있을텐데요
+
+IoC 모델은 곧 역활과 책임에 분리라는 내용이 집약 되어 있습니다.  
+왜 내가 직접 제어 하지 않고 다른 곳에서 제어 할 수 있게 하였을까요?? 제어해주는 제3자는 제어에 대한 역활을 담당 하도록 하고   
+그 외 구현을 담당하는 역활을 하고 이렇게 역활과 책임에 따라서 객체간 협력은 변경에 유연한 코드를 작성 할 수 있기 때문이라 생각합니다.  
+Spring에서 IoC를 기반으로 한 것은 바로 변경에 유연한 코드를 작성 할 수 있게 한것이죠.  
+
+그럼 구체적으로 Spring에서 IoC를 어떻게 사용했는지 확인해 보도록 하겠습니다.
+
+
+
 
 ### 컨테이너란?
 
