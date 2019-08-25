@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="개발 무기고">
+    <meta name="keyword" content="">
+    <meta property="og:title" content="류윤광의 개발 블로그">
+    <meta property="og:description" content="개발 무기고">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          첫 서비스 오픈 준비를 하며 - 류윤광의 개발 블로그
+        
+    </title>
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/08/19/회고/첫오픈 준비/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css"> -->
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/08/19/회고/첫오픈 준비/">
+
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <!-- <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('bg_computer.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#회고" title="회고">회고</a>
+                            
+                        </div>
+                        <h1>첫 서비스 오픈 준비를 하며</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yungwang Ryu on
+                            2019-08-19
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">백문이불여일견</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3><span id="들어가며">들어가며</span></h3>
+<p>첫 서비르 오픈 준비를 하고 부족한 부분을 보안 할 점, 문제 해결 상황, 경험 등을 기억하고 기록하여 다음에는 더 개선된 행동을 하기 위해 적어 놓는다.</p>
+<h3><span id="부하테스트-통과-시키기">부하테스트 통과 시키기</span></h3>
+<p>서비스를 오픈하기전에 부하테스트를 하여 서버에 어떤 영향이 있을지 모르니 사전에 알기 위함이고 앞으로 팀내 서비스를 출시 할 때 부하테스트 스템을 추가하여 표준적인 부하 임계치를 정하고자 시작하게 되었다.</p>
+<h3><span id="응답시간-지연">응답시간 지연</span></h3>
+<p>Scouter에서 PHP에게 요청하는 응답시간이 지연되었다. 결과적으로 TPS는 15밖에 나오지 않았고 서비스 출시가 어려운 상황이었다.</p>
+<p>원인은 PHP에게 요청하는 데이터 사이즈도 컸고 어떠한 로직에 의하여 Cache가 동작하지 않는 것이었다.</p>
+<p>이부분은 Scouter를 보고 실장님에 인사이트로 원인을 알게 되었고 Scouter에서 나오는 데이터를 잘 분석하는 능력이 필요함을 느꼈다.</p>
+<p>아무튼 서비스 출시를 위해서는 PHP에게 의존하는 것을 최대한 줄여한다. 그러기 위해 사용한 전략은 PHP에서 가져오는 html, 데이터를 Java로 내재화 하고 캐쉬를 적용하는 것이다.</p>
+<h3><span id="캐쉬-적용">캐쉬 적용</span></h3>
+<p>Spring Caffeine 캐쉬를 사용하였고 어쩔수 없이 PHP 콜이 필요한 부분은 캐쉬를 사용하였다.</p>
+<p>캐쉬를 적용해 본것이 처음이었는데 캐쉬에 중요성과 캐쉬가 동작하는 개념을 알아야 할 필요성을 느꼈다.</p>
+<p>작업이 끝나고 스트레스 서버에 반영 하였다.</p>
+<h3><span id="ec2-t2micro-t2medium-교체">EC2 t2.micro → t2.medium 교체</span></h3>
+<p>처음에 부하를 돌려도 Scouter에 반응이 없었는데 알고보니 토큰만료와 User-Agent 값이 달라서 로그인이 안되서 그런것이었다. 수정하고 테스트를 하였는데도 TPS가 50 밖에 되지 않는 것이었다.</p>
+<p>실장님이 일단 공인망을 타는것을 내부망을 타도록 바꾸어 주셨고 서버 스펙도 t2.medium으로 교체하고 진행하였는데 TPS 320 !!! 통과다.</p>
+<p>실장님이 말씀하시길 처음에 구동될때 Java가 초기화 될때는 CPU나 메모리 점유율이 크지만 곧 안정되서 떨어지는 곡선에 개형을 나타나지만 PHP는 떨어지지 않고 계속 유지되고 있다고 하였다. 요청은 PHP서버에서 받고 있긴 하지만 이대목에서 정확히 왜그런지는 모르곘다.</p>
+<p>TODO 그라파냐 캡쳐사진 첨부</p>
+<p>Visual GC 원격 접속</p>
+<p>원격으로 부하테스트 서버에 접속하여 GC에 대한 모니터링을 할 수 있다.</p>
+<p>그 과정에서 터미널로 포트를 확인하는 과정이 있었는데 이러한 부분은 내가 아예 몰라서 공부가 필요하다.</p>
+<h3><span id="어-배너가-안나오네">어? 배너가 안나오네??</span></h3>
+<p>다음날은 광복절 휴일이었다… 제발 오늘은 아무일 없기를… 칼퇴해야지!! 하는데 역시나 버그가 발생하였다.<br>
+퇴근 약 1시간 전 이었고 얼른 끝내야 겠다는 마음으로 버그 원인을 조사하기 시작하였다. 특정 쿠기가 있으면 일반 배너가 나와야 하고 특정 쿠기가 없으면 사이즈가 큰 확장 배너가 나와야 하는데 확장 배너에서 이미지가 안나오고 그냥 html이 텍스트로 나오는 것이다.</p>
+<p>많은 삽질과 도움을 받아 버그는 해결 되었는데 해결 하는 과정 속에 문제 원인과 시간이 지체된 이유를 적어 본다.</p>
+<h3><span id="php-코드를-잘-못-보고-있었다">PHP 코드를 잘 못 보고 있었다.</span></h3>
+<p>작업내용은 PHP 코드를 보고 JAVA 옮기는 것이었는데 a라는 파일 참고하여 개발하였는데 알고보니 수정된 a’ 파일이었던 것이다.<br>
+그래서 Java 코드를 다시 수정 하는것이 필요하였다. 하지만 빠르게 PHP코드를 이해하고 Java로 어떻게 구현할지 감이 잡히지 않았다. PHP에는 있어도 JAVA 영역에서는 굳이 필요없는 코드인데 그것도 옮기려는 뻘짓도 있었고 꼭 PHP코드를 그대로 복사하는 것이 아니라 이해하고 코딩을 했어야 했다. A-&gt;B-&gt;C 로 로직이 구현 되어 있어도 A-&gt;C 로 가는 좋은 방법이 있으면 그것을 구현하면 되는 것이다. 하지만 나는 PHP를 그대로 구현해야 탈이 없다는 것이 잠재되어 있었는지 PHP데로 하려고 이해하고 JAVA로 코드를 구현하려 보니 시간이 지체 되었다.</p>
+<h3><span id="db를-잘-못-보고-있었다">DB를 잘 못 보고 있었다.</span></h3>
+<p>구현하고 데이터를 확인하는데 디비랑 데이터가 다른것이다. 현상 특정 엔티티 프로퍼티에 값이 계속 null인 것이다. 많은 삽질 끝에 결국 DB주소를 잘 못 바라 보고 있었다…</p>
+<h3><span id="하지만-그래도-원인은-그대로">하지만 그래도 원인은 그대로…</span></h3>
+<p>기존 PHP족 배너에서도 잘 나오던게 안나오고 있었고 이건 먼저 PHP쪽에 확인이 필요하였다. 결국 조치를 취하여 이제 배너는 나오게 된 상황이었다.</p>
+<h3><span id="결국-개발자는-문제-해결-능력">결국 개발자는 문제 해결 능력</span></h3>
+<p>배너는 나오고 있었지만 위에서 말했다 싶이 확장배너는 나오지 않았다. 특정 쿠키값을 지우면 나와야 하는데 안나오는 것이다. 옆에 선배 개발자님에게 도움을 받으며 문제를 하나하나 차근차근 까보기 시작했다. 지금 특정 쿠키를 지웠으니까 여기 조건으로 들어 왔을테고 근데 안나왔네? 그럼 PHP 소스를 보자아~~ 아 음… 아 여기 조건이 바뀌었네… 물론 이렇게 한방에 해서 해결 된건 아니었지만 문제 원인을 분석하기 위해 차근차근 하나씩 따져 보면서 접근하는 방식이 참 인상 깊었다. PHP랑 똑같이 했는데 안되면 그냥 스타일을 같이 먹여 보고 좀 이렇게 해보고 저렇게 해보고 그래서 결국 해내는 것 그 문제를 해결 하는 능력이 결국 개발자에 실력인것 같다.</p>
+<h3><span id="그럼-나는-왜-스스로-문제를-해결하지-못했을까">그럼 나는 왜 스스로 문제를 해결하지 못했을까??</span></h3>
+<p>일단, 문제원인이 외부적인 문제도 있었다. 그럼 외부적이 문제가 무엇이었는지 파악을하고 질문을 하던지 공유를 하던지 해서 앞단에서 해결을 빨리 했어야 했는데 그러지 못헀다. 결국 <strong>이문제가 내부(나의 문제)인가 아님 외부 인가 부터 구별하는 혜안이 부족</strong>했던거 같다.</p>
+<p>코드를 확실히 이해하지 않은 상태에서 코드 수정하기 바빴다.<br>
+코드를 이해하고 이것이 의미하는 바가 무엇인지 확실하게 이해해야 하고 코드를 수정해야 하는데 일단 수정하고 결과 보고 아니면 이렇게 수정하고 결과보고 계속 쳇바퀴만 돌고 문제는 해결되지 않고 시간은 지체 되어 결국 도움을 요청하게 되었다.</p>
+<h3><span id="느낀점-그래서-앞으로는">느낀점, 그래서 앞으로는?</span></h3>
+<p><strong>적극적으로 이해하기 위해서 적극적으로 행동하자</strong></p>
+<p>물어보는게 제일 빠르다<br>
+다른 사람이 작성한 코드나 잘 모르는 업무라면 그 업무 담당자에게 확실하게 물어보자. 물어 볼때는 최대한 많이 정보를 얻기 위해서 무엇을 물어볼지 적어놓자. 그리고 이왕이면 내 자리로 데리고 와서 모니터 화면을 보면서 빠르게 이해시켜주면서 정보를 얻는것이 제일 좋다.</p>
+<p><strong>코드가 의미하는 바가 무엇인지 확실히 이해한다.</strong></p>
+<p>함부로 또는 건성으로 코드를 이해했다고 넘어가면 안된다.<br>
+정말 어떠한 문맥에서 이러한 코드를 작성했는지 무엇을 위해서 코드를 작성헀는지 확실히 이해하는 활동을 반드시 해야 한다.</p>
+<p><strong>개인공부는 업무를 하면서 잘 안된것들과 배운 경험들에 연장선에서 공부하자</strong><br>
+결국 내가 지금 하고 있는 업무를 잘하면 된다. 그것들을 잘 습득해야 나중에 제대로 활용 할 수 있고 더 잘 할 수 있게 된다.<br>
+업무에서 잘 사용하지 않고 있는데 미리 공부한 지식들은 금방 까먹고 밑빠진 독에 물붓기가 되는 셈이다.</p>
+<p><strong>압박감 속에서 문제를 해결하는 능력이 진짜 능력이다.</strong><br>
+사람들이 다 보고 있다. 나만 지켜 보고 있다. 부담감이 들고 내 행동 하나에 초점이 맞춰저 있어 되게 신경쓰인다.<br>
+하지만 일하면서 그러한 상황은 얼마든지 올 수 있다. 그러한 것들을 신경쓰지 않고 내 페이스를 유지하면서 정확하고 빠르게 생각하여 문제 원인을 찾고 해결하는 능력을 키우기 위해 의식적으로 노력해야 한다. 그럴려면 <strong>일할때나 개인 공부 할 때 시간을 재고 문제를 해결 한다는지 주위에 사람이 있다 항상 생각하고 문제를 푼다는지 하는 전략</strong>으로 해야 할 것 같다.</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/08/20/Build/Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기/" data-toggle="tooltip" data-placement="top" title="Gradle로 빌드시 동적으로 yml 파일에 값 셋팅하기">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/08/18/ETC/서버가 여러대 있때 redirect 사용시 발생하는 문제/" data-toggle="tooltip" data-placement="top" title="서버가 여러대 있때 redirect 사용시 발생하는 문제">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+                
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">들어가며</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">부하테스트 통과 시키기</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">응답시간 지연</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">캐쉬 적용</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">EC2 t2.micro → t2.medium 교체</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">어? 배너가 안나오네??</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">PHP 코드를 잘 못 보고 있었다.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">DB를 잘 못 보고 있었다.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">하지만 그래도 원인은 그대로…</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">결국 개발자는 문제 해결 능력</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">그럼 나는 왜 스스로 문제를 해결하지 못했을까??</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">느낀점, 그래서 앞으로는?</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#회고" title="회고">회고</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Yungwang";
+    var disqus_identifier = "https://biggwang.github.io/2019/08/19/회고/첫오픈 준비/";
+    var disqus_url = "https://biggwang.github.io/2019/08/19/회고/첫오픈 준비/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yungwang Ryu 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" rel="external nofollow noopener noreferrer" target="_blank">BeanTech</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://biggwang.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-128907631-1';
+    var _gaDomain = 'https://biggwang.github.io/';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://biggwang.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
