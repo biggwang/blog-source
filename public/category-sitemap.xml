@@ -7,29 +7,36 @@
     </url>
 
     <url>
-        <loc>https://biggwang.github.io/categories/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</loc>
-        <lastmod>2019-08-18T06:55:34.986Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://biggwang.github.io/categories/Build/</loc>
-        <lastmod>2019-08-19T13:04:46.737Z</lastmod>
+        <lastmod>2019-08-19T23:21:45.108Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://biggwang.github.io/categories/Build/Gradle/</loc>
-        <lastmod>2019-08-19T13:04:46.737Z</lastmod>
+        <lastmod>2019-08-19T23:21:45.108Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/categories/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</loc>
+        <lastmod>2019-08-19T23:22:47.040Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://biggwang.github.io/categories/Spring/</loc>
-        <lastmod>2019-08-21T13:29:16.846Z</lastmod>
+        <lastmod>2019-08-21T23:27:14.438Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/categories/JS/</loc>
+        <lastmod>2019-08-31T00:08:22.252Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

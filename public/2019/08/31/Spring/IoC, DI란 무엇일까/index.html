@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="개발 무기고">
+    <meta name="keyword" content="">
+    <meta property="og:title" content="류윤광의 개발 블로그">
+    <meta property="og:description" content="개발 무기고">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          IoC, DI란 무엇일까 - 류윤광의 개발 블로그
+        
+    </title>
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/08/31/Spring/IoC, DI란 무엇일까/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css"> -->
+
+    <link rel="canonical" href="https://biggwang.github.io/2019/08/31/spring/ioc, di란 무엇일까/">
+
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <!-- <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('bg_computer.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                        </div>
+                        <h1>IoC, DI란 무엇일까</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yungwang Ryu on
+                            2019-08-31
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">백문이불여일견</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3><span id="why">Why?</span></h3>
+<ul>
+<li>Spring 에서 DI를 잘 썼다고 하는데 어느부분에서 잘썼는지 구체적인 사례를 찾아보자</li>
+</ul>
+<h3><span id="목표">목표</span></h3>
+<ul>
+<li>Spring IoC, DI가 무엇인지 이해시킨다.</li>
+<li>Spring DI에 장단점을 이해시킨다.</li>
+<li>Bean이란 무엇이고 Container에서 어떻게 관리되고 생명주기는 어떻게 되는지 이해시킨다.</li>
+</ul>
+<h3><span id="ioc-inversion-of-control-란-무엇인가">IoC (Inversion of Control) 란 무엇인가?</span></h3>
+<p>IoC에 용어는 90년 중반에 GoF의 디자인패턴에서도 이용어가 언급되었다고 합니다. 즉, IoC는 Spring에서 나온 용어가 아닙니다. 과거 EJB에서도 WAS에 Servlet Container에서도 사용 된 개념이죠.</p>
+<p>IoC에 대한 개념은 굉장히 폭이 넓습니다.<br>
+해석하면 제어의 역전입니다. 도대체 어떤 제어를 말하는 것이며 무엇을 역전한다는 말 일까요??</p>
+<p>아래 코드부터 바로 보시죠</p>
+<p>아래는 개발자가 직접 객체를 생성하여 코드를 제어하는 코드입니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> B b;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        b </span>= <span class="keyword">new</span> B();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위와 같이 B클래스를 직접 인스턴스하여 의존관계를 나타내고 있습니다. 즉 개발자가 직접 객체를 제어하여 A객체는 B객체에게 의존하고 있어 라고 클래스를 통해 표현하고 있는것 이죠</p>
+<p>이것은 개발자가 직접 한 것입니다. 하지만 아래 코드는 어떨까요??</p>
+<p>컨테이너에 의해서 생성한 객체를 사용만 하는 코드</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> B b;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>스프링 사용자라면 잘알고 있는 표현입니다.<br>
+B라는 객체가 스프링 컨테이너에게 관리되고 있는 Bean이라면 @Autowired 를 통해 객체를 주입받을수 있게 되죠<br>
+이것은 개발자가 직접 객체를 관리하지 않고 스프링 컨테이너에서 직접(제어) 객체를 생성하여 해당 객체에 주입 시켜준 것입니다.</p>
+<p>이것이 바로 제어가 역전되었다. IoC 라는 개념입니다. 또 다른 예를 들어볼까요??</p>
+<p>디자인패턴인 템플릿 메소드 패턴에서도 IoC 개념을 찾아 볼 수 있습니다. 이처럼 IoC는 거시적인 개념이 아닌 프로그램을 제어권을 누가 가져갈것인가에 대한 프로그래밍 모델일 뿐입니다. 아래 코드를 한번 보죠</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">IronFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IronMan ironMan;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> IronMan <span class="title">getIronMan</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> assemble();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 제어권은 상위 클래스에게 있다.</span></span><br><span class="line"><span class="comment">     * 하위 클래스에서 구현한 코드는 상위 클래스가 어떻게 되는지 모른다. 단지 구현해야하는 부분을  </span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> IronMan <span class="title">assemble</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do assemble.. from head, body, arms, legs</span></span><br><span class="line">        <span class="keyword">return</span> ironMan;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">head</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">body</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">arms</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">legs</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> classs HulkBuster extends IronFactory &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">head</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do something..</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">body</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do something..</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">arms</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do something..</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">legs</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do something..</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>제어권은 상위 클래스인 IronFactory에게 있습니다.<br>
+하위 클래스에서 구현한 코드는 상위 클래스가 어떻게 되는지 모릅니다. 단지 구현해야하는 부분을 구현하였고 구현한 코드가 언제 어떻게 실행 될지는 모릅니다. 상위 클래스에서 알아서 필요할 때 구현한 메소드를 사용하게 됩니다. 바로 이처럼 코드 흐름이 제3자에게 위임되는 것이 IoC 모델이라고 합니다.</p>
+<h3><span id="그럼-왜-ioc를-spring에서-사용-하였을까요-분명히-이점이-있을텐데요">그럼 왜 IoC를 Spring에서 사용 하였을까요? 분명히 이점이 있을텐데요</span></h3>
+<p>IoC는 Spring에서만 사용되는 개념이 아닙니다. 프로그래밍 패턴이기때문에 범용적으로 쓰이며 작게는 객체간에 디자인 패턴으로 크게는 컨테이너, 프레임워크 역활에 적합한 구조이기 때문에 상황에 맞게 사용되는 프로그래밍 모델인 것이죠. Spring은 Framework입니다. 그렇기 때문에 흐름을 직접 핸들링 해줘야 하는것이고 자연스럽게 적합한 모델, 패턴을 적용해야 했고 그래서 Framework에 적합한 IoC, DI 개념 모델이 들어가게 된것이조.</p>
+<p>그럼 이점은 무엇이 있을까요?<br>
+IoC 프로그램 모델은 곧 역활과 책임에 분리라는 내용과 관련이 있다고 생각합니다.<br>
+왜 내가 직접 객체를 제어 하지 않고 다른 제 3자가 제어를 위임하게 하고 나는 수동적으로 따라가는 길을 택하였을까요??</p>
+<p>이는 객체지향 프로그래밍과 아주 관련이 깊다고 생각합니다. 객체지향 프로그래밍은 각 객체마다 자기의 역활과 책임을 온전히 다하며 서로 협력하며 변경에 유연한 프로그래밍을 할 수 있는 프로그래밍 기법입니다. 즉, 각 객체마다 올바른 캡슐화를 통해 높은 응집도와 낮은 결합도를 이루어나가는 것이 핵심중에 핵심이죠.</p>
+<p>이러한 관점에서 제어의 역전으로 인해 제 3자 즉 다른 객체, 다른 컨테이너에게 제어에 대한 역활과 책임을 위임하고 다시말해 신경쓰지 않고 지금 내가 하고자 하는 역활과 책임에 관심이 있는것이죠. 왜 이렇게 할까요? 답은 <strong>변경에 유연한 코드 구조를 가져가기 위해서</strong>입니다. 내가 작성하고자 하는 코드에서 객체를 생성, 소멸 등에 관리 코드와 함께 비지니스 코드까지 들어가면 어떨까요??</p>
+<p>기능은 얼마든지 변경될 수 있습니다. 자, A라는 객체를 생성하고 있었는데 A객체는 삭제하고 B객체를 추가해야 한다고 하면 어떻게 될까요?? 뭐 한 곳에서만 객체 생성을 추가했다면 한 곳에서만 변경하면 되겠죠… 그럼 10곳에서 A라는 객체를 사용하였다고 해보죠. 그럼 10번을 수정해줘야 겠네요?</p>
+<p>또 다른 예를 들어보죠. 객체 생명 주기를 직접 관리하기 때문에 객체 생성, 삭제를 직접 할 수 있습니다. 근데 도메인 모델상 객체 삭제는 절대 하면 안된다고 해보죠. 하지만 직접 개발자가 객체를 핸들링 할 수 있기 때문에 삭제하거나 아니면 새로운 객체를 생성 할 수 도 있습니다. 다시 말해서 권한이 너무 많다는 것입니다. 이것은 곧 캡슐화 위반을 일으킨 것입니다.</p>
+<p><strong>엔터프라이즈 차원에서 수많은 객체들을 편리하게 관리하기 위함입니다.</strong></p>
+<p>현재 설명한 객체는 등장한것이 2~3개 밖에 되지 않습니다.<br>
+각 객체마다 협력을 하다보면 IoC역활을 하는 객체들이 계속 생길수 있습니다. 그럼 개발자는 그런 IoC 역활을 하는 객체를 계속 알고 개발을 해야 합니다.<br>
+1~2개는 괜찮겠죠 하지만 개발하다 보면 또 유지보수 하다보면 객체를 계속 생길수 있습니다. 요구사항이 변하니까요.</p>
+<p>그래서 스프링은 Application Context 로 모든 객체를 일괄 관리하는 IoC를 Wrapping 하는 개념이라 할까요? 아무튼 그렇게 보따리 해서 컨테이너가 되어 객체에 의존관계 주입, 객체 생명 주기 관리, 그 밖에 아직 제가 알지 못하는 영역에서 많은 유용한일을 담당 할 것입니다.</p>
+<p><strong>자 그럼 질문을 다시 해보겠습니다. IoC 왜 제어를 역전 시켰을까요? 어떤 이점일까요?</strong></p>
+<p>객체를 관리해주는 독립적인 존재 (거시적으로는 컨테이너, 미시적으로는 디지인패턴적용)와 그 외 내가 구현 하고자 하는 부분으로 각각 관심을 분리하고 서로에 역활을 충실히하면서 변경에 유연한 코드를 작성 할 수 있는 구조이기 때문에 제어를 역전 하였다. 저는 이렇게 생각하였습니다.</p>
+<p>스프링 컨테이너 차원에서는 엔터프라이즈 개발에 적합하게 수많은 객체 생명주기를 관리 하고 의존 관계를 설정해주고 그 외 많은 기능들을 제공하여 개발자는 비지니스 로직에 집중 할 수 있게 해주는것이죠.</p>
+<h3><span id="그럼-spring-di-무엇을-의미하는-걸까요">그럼 Spring DI 무엇을 의미하는 걸까요?</span></h3>
+<p>Spring Framework란 무엇인가? 장점은 무엇인가? 조사를 하다보면 반드시 나오는 DI입니다.<br>
+이녀석은 무엇일까요?? 제가 참고한 토비스프링에서 정보를 얻을 수 있었습니다.</p>
+<blockquote>
+<p>IoC가 매우 느슨하게 정의돼서 폭넓게 사용되는 용어라는 점이다. 때문에 스프링을 IoC 컨테이너라고만 해 서는 스프링이 제공히는 기능의 특정을 명확하게 설명하지 못한다. … 생략 … 몇몇 사람의 제안으로 스프링이 제공하는 IoC 방식을 핵심을 짚어주는 의존관계 주입 DependencyIniection이라는， 좀 더 의도가 명확히 드러나는 이름을 사용하 기 시작했다.</p>
+</blockquote>
+<p>위에서 말했다싶이 IoC는 객체 생명 관리, 흐름 제어를 제 3자에게 위임하는 프로그래밍 모델입니다. 디자인 패턴인 템플릿 메소드 패턴에서도 IoC 개념을 찾아 볼 수 있었죠.<br>
+하지만 이런 디자인 패턴이 적용된 것을 가지고 Spring 에서 IoC, IoC 할까요? 좀 더 핵심적인 의미가 있지 않을까요? 그 핵심적인 의미는 DI에서 찾아 볼 수 있습니다.</p>
+<blockquote>
+<p>스프링이 여타 프레임워크와 차별화돼서 제공해주는 기능은 의존관계 주입이라는 새로운 용어를 사용할 때 분명하게 드러난다. 생략…<br>
+DI는 오브젝트 레퍼런스를 외부로부터 제공(주입)받고 이를 통해 여타 오브젝트와 다이내믹하게 의존관계가 만들어지는 것이 핵심</p>
+</blockquote>
+<p>Spring IoC와 DI가 어떤 차이점이 있는지 명확하게 이해가 되지 않았는데 위 문구에서 찾을 수 있게 되었죠.</p>
+<p>그리고 DI라는 말은 마틴파울러와 그 주변사람들이 모여 IoC에 범용적인 의미를 객체 주입이라는 의미를 명확히 하기 위해 만들어졌다고 합니다.<br>
+그냥 제어의 역전이라 하면 그 차원에서 어느 범위에서 의존성 역전일까요? 단순 객체간의 디자인패턴으로 활용하는것도 제어 역전이고 컨테이너차원에서 수많은 객체들에 의존관계를 파악하고 런타임시점에서도 다이나믹하게 객체를 주임하여 유연한 프로그래밍을 할 수 있도록 하는 패턴에 더 명확한 이름을 부여하기 위해 토론 끝에 Dependency Injection 이라는 용어를 만들었다고 합니다.<a href="https://www.martinfowler.com/articles/injection.html" rel="external nofollow noopener noreferrer" target="_blank">[원문]</a> <a href="https://vandbt.tistory.com/44" rel="external nofollow noopener noreferrer" target="_blank">[번역]</a></p>
+<h3><span id=""></span></h3>
+<p>DI는 IoC 프로그래밍 모델을 구현하는 방식중에 하나입니다.<br>
+Spring 에서는 IoC를 구체적으로 DI라는 방식을통해서 의존성 역전 제어를 하고 있는 것이죠. 우선, 용어를 하나하나 분석해 보겠습니다.</p>
+<p><strong>의존성</strong><br>
+프로그래밍에서 의존한다는 말은 서로 다른 객체간에 레퍼런스 참조가 되어 있다는 말입니다. 이는 A -&gt; B에 의존 관계에 있을 때, B객체에 변경사항이 생겼을 때, A 객체가 영향을 받는 구조인 것이죠.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> B b = <span class="keyword">new</span> B();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">anyMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        b.~~</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>주입</strong><br>
+주입이란 단어를 생각하면 주사 맞는 이미지가 연상되는데요.<br>
+외부로부터 객체의 주소(레퍼런스) 값을 전달 받게 되어 객체가 참조 되어지는 방식입니다.</p>
+<p>다시 돌아와서 그럼 의존성 주입이라는 말은 어떤 말일까요?<br>
+의존관계에 있는 객체들이 있을 때, 외부(스프링컨테이너)에서 객체에 레퍼런스를 전달하여 사용하고자 하는 객체에서 코드를 작성 할 수 있게 한다. 이런의미가 되곘네요</p>
+<p>DI에 핵심 키워드는 <strong>외부로부터~</strong>, <strong>다이나믹한 의존관계</strong> 입니다.</p>
+<p>토비스프링에서 말하는 DI (의존관계 주입)에 3가지 조건은 다음과 같습니다.</p>
+<ul>
+<li>클래스 모델이나 코드에는 런타임 시점의 의존관계가 드러나지 않는다. 그러기 위해서는 인터페이스에만 의존하고 있어야 한다.</li>
+<li>런타임 시점의 의존관계는 컨테이너나 팩토리 같은 제3의 존재가 결정한다.</li>
+<li>의존관계는 사용할 오브젝트에 대한 레퍼런스를 외부에서 제공(주입)해줌으로써 만들어진다.</li>
+</ul>
+<p>외부로부터 인터페이스타입으로 얼마든지 부품이 교체 될 수 있으니 코드가 유연해 지겠죠? 또한 의존성 제어로 인해 수많은 객체들에 의존관계를 맺어주고 개발하는 클라이언트 입장에서는 편하게 비지니스로직에 집중할 수 있다고 생각합니다. 이러한 DI를 잘 녹인 프레임워크가 스프링이라고 합니다.</p>
+<p>토비스프링에서 인용한 문구를 다시 보여드리겠습니다.</p>
+<blockquote>
+<p>DI는 오브젝트 레퍼런스를 외부로부터 제공(주입)받고 이를 통해 여타 오브젝트와 다이내믹하게 의존관계가 만들어지는 것이 핵심 …생략…<br>
+주입받는 메소드 따라미터가 이미 특정 클래스 타입으로 고정되어 있다면 DI가 일어날 수 없다. DI에서 말하는 주입은 다이내믹하게 구현 클래스를 결정해서 제공받을 수 있도록 인터페이스 타입 의 파라미터를 통해 이뤄져야 한다.</p>
+</blockquote>
+<p><strong>핵심은 DI는 클래스타입이 고정되어 있지 않고 인터페이스 타입의 파라미터를 통해 다이나믹하게 구현 클래스를 결정해서 제공 받을수 있어야 한다.</strong></p>
+<p>이것이 바로 DI에 핵심개념입니다.</p>
+<p>코드를 통해서 바로 알아보겠습니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IronManController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> IronManService ironManService;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IronManController</span><span class="params">(IronManService ironManService)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.ironManService = ironManService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 생략</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>IronManService라는 인터페이스를</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IronManService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">flying</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HulkBuster</span> <span class="keyword">implements</span> <span class="title">IronManService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"헐크버스터 공격!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 생략</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mark15</span> <span class="keyword">implements</span> <span class="title">IronManService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"나노입자 아이언맨 공격!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 생략</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>DI라는 개념 또한 스프링에서 나온 개념이 아닙니다.</p>
+<h3><span id="그럼-ioc와-di-무엇이-다른걸까요">그럼 IoC와 DI 무엇이 다른걸까요??</span></h3>
+<p>IoC는 객체의 흐름, 생명주기관리등 독립적인 제 3자에게 역활과 책임을 위임하는 방식에 프로그래밍 모델입니다.<br>
+디자인패턴에서도 찾아볼수 있고 다른 컨테이너를 가진 프레임워크들에서도 찾아볼 수 있습니다. 범용적인 표현이죠 하지만 DI는 인터페이스를 통해 다이나믹하게 객체를 주입을 하여 유연한 프로그래밍을 가능하게 하는 패턴으로 좀 더 구첵적인 의미인것이죠.</p>
+<h3><span id="남은것들">남은것들</span></h3>
+<ul>
+<li>도대체 Spring은 왜 DI를 잘 구현했다고 하였을까</li>
+<li>IoC, <a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#java-dependency-injection-8211-service-components" rel="external nofollow noopener noreferrer" target="_blank">DI 예제</a> 직접 구현해보기</li>
+<li>생성자 주입은 언제 사용할까??</li>
+<li>Setter 주입은 언제 사용할까??</li>
+</ul>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/08/31/JS/document ready 의미/" data-toggle="tooltip" data-placement="top" title="document ready 의미">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+                
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Why?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">목표</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">IoC (Inversion of Control) 란 무엇인가?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">그럼 왜 IoC를 Spring에서 사용 하였을까요? 분명히 이점이 있을텐데요</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">그럼 Spring DI 무엇을 의미하는 걸까요?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text"></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">그럼 IoC와 DI 무엇이 다른걸까요??</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">남은것들</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Yungwang";
+    var disqus_identifier = "https://biggwang.github.io/2019/08/31/Spring/IoC, DI란 무엇일까/";
+    var disqus_url = "https://biggwang.github.io/2019/08/31/Spring/IoC, DI란 무엇일까/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.facebook.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://www.linkedin.com/in/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yungwang Ryu 2019 
+                    <br>
+                    Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org" rel="external nofollow noopener noreferrer" target="_blank">BeanTech</a> | 
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://biggwang.github.io/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-128907631-1';
+    var _gaDomain = 'https://biggwang.github.io/';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://biggwang.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
