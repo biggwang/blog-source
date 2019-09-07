@@ -1,8 +1,8 @@
 ---
-title: Docker MySql 이미지로 개발 DB 환경 구성하기
+title: Mac에서도 Window 에서도 도커로 동일한 Mysql DB 환경 만들기
 catalog: true
-date: 2019-07-25 20:05:15
-subtitle: 
+date: 2019-09-07 23:28:23
+subtitle:
 header-img: "bg_computer.jpg"
 tags: 
 - Learnning
@@ -37,11 +37,12 @@ Docker Container 가 삭제 되면 데이터는 보관되지 않고 같이 삭�
 
 # 어떻게 데이터를 보관 할까?? 호스트 마운트
 
+#### Mac 기준
 ~~~ java
-docker container run -d -p 13306:3306     \
+docker container run -d -p 3306:3306     \
 -e MYSQL_ROOT_PASSWORD=1111         \
--v /Users/ryu/mariadb:/var/lib/mysql     \
---name mariadb_local mariadb
+-v /Users/ryu/mysql:/var/lib/mysql     \
+--name ryu-mysql mysql
 ~~~
 
 이런식으로 mysql 이미지에 특정 디렉토리에 내 홈 피씨 (현재 맥북) 에 파일을 공유 할 수 있다.  
@@ -56,22 +57,27 @@ docker container run -d -p 13306:3306     \
 덤프 파일 명령어는 이렇다.
 
 ~~~ java
-mysqldump -u root -p --all-databases > /var/lib/mysql/backup.sql
-mysqldump -u root -p ryu > /var/lib/mysql/ryu.sql
+root@xxxxx:/# mysqldump -u root -p --all-databases > /var/lib/mysql/dump_ryu_20190907.sql
+~~~
+
+~~~ java
+root@xxxxx:/# mysqldump -u root -p ryu > /var/lib/mysql/dump/dump_ryu_20190907.sql
 ~~~
 
 
-# 이제 다른 PC에서도 적용해 보자
+# 이제 Window에서도 mysql 개발 환경을 구성해 보자
 
 윈도우에서 도커와 볼륨을 마운트 할 때 주의사항은 "c:/" 이런식이 아닌 "/C/" 대소문자 구분해서 작성 해야 한다.
 
 ~~~ java
-docker container run -d -p 13306:3306 -e MYSQL_ROOT_PASSWORD=1111 -v /C/Users/hmsarang/dockerdb:/var/lib/mysql --name mariadb_local3 mariadb
+docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1111 -v /C/Users/hmsarang/mysql:/var/lib/mysql --name ryu-mysql mysql
 ~~~
 
+# Mysql 도커 컨테이너는 언제든 날려도 상관없다!!
 
-맥에서는 잘 됬는데 윈도우에서는 mariadb에서 /var/lib/mysql 경로에 접근을 못할까?? 해결필요
-{% asset_img "docker-error.png" %}
+mysql 데이터 저장소를 지정한 영역에 따로 mount 하였기 때문이다.
+
+언제든지 컨테이너를 교체해도 된다.
 
 
 # 참고
