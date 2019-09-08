@@ -10,16 +10,15 @@ catagories:
 - Docker
 ---
 
-# Docker로 난 무얼 하고 싶었나??
+### Docker로 난 무얼 하고 싶었나??
 
-환경에 제약 없이 개발 DB를 구성하고 싶었다.  
-맥북에서 공부한 내용을 실습하면서 개발하고 개발한 소스 Github에 올리고 집에서는 Github에서 소스를 받아서 하면됬다.  
-근데, DB는?? 내가 저장한 데이터 DB 컨텍스트 정보는 환경이 바뀌면 매번 설치하고 데이터 싱크 맞추기 위해 쿼리 만들고 스크립트 돌려야 하나?  게다가 집은 Window PC이다... 개발하기도 전에 환경 구성하는 것 때문에 지친다... 
+환경에 제약 없이 개발 DB를 구성하고 싶었다.  환경이라 함은 Window든 Mac이든 내컴퓨터든 다른 사람 컴퓨터든 말이다. Mac PC에서 공부한 내용을 Github에 올리고 집 Window PC에서도 Github에서 소스를 받아서 하면됬다. 근데, DB는?? 내가 저장한 데이터 DB 컨텍스트 정보는 환경이 바뀌면 매번 설치하고 데이터 싱크 맞추기 위해 쿼리 만들고 스크립트 돌려야 하나?  게다가 집은 Window PC이다.
 
-그러다 문득 Docker! Docker로 이미지 만들고 Docker Hub 에 올려 놓으면 그 짜증나는 환경 구성이 해결 되지 않을까??  
-Docker를 왜 쓸까? 했는데 나에게 Docker가 필요해진 경우가 생긴 것이다. 
+**개발하기도 전에 환경 구성하는 것 때문에 지친다!!!**
 
-# 하지만 반영되지 않는 DB 데이터
+그러다 문득 Docker! Docker로 이미지 만들고 Docker Hub 에 올려 놓으면 그 짜증나는 환경 구성이 해결 되지 않을까?? Docker를 왜 쓸까? 했는데 나에게 Docker가 필요해진 경우가 생긴 것이다. 
+
+### 하지만 반영되지 않는 DB 데이터
 
 mysql 을 이미지를 받아 아래 처럼 셋팅 후 
 
@@ -34,10 +33,11 @@ mysql 을 이미지를 받아 아래 처럼 셋팅 후
 [Docker Volume 개념 및 MySql을 Docker상에서 운용하는 방법](https://joonhwan.github.io/2018-11-14-fix-mysql-volume-share-issue/)  
 
 Docker Container 가 삭제 되면 데이터는 보관되지 않고 같이 삭제된다. 즉, DB 데이터가 날라간다...  
+사실 이것이 Docker에 철학이라 생각한다. Docker 이미지, 컨테이너는 언제든지 갈아 치울수 있어야 하고 그럴려면 상태값을 당연히 보관하고 있으면 안된다.
 
-# 어떻게 데이터를 보관 할까?? 호스트 마운트
+### 어떻게 데이터를 보관 할까?? 호스트 마운트
 
-#### Mac 기준
+**Mac 기준**
 ~~~ java
 docker container run -d -p 3306:3306     \
 -e MYSQL_ROOT_PASSWORD=1111         \
@@ -50,7 +50,7 @@ docker container run -d -p 3306:3306     \
 
 참고로 삽질을 많이 했었는데 [[docker] MariaDB + 로컬에 데이터저장소 연결](https://lemontia.tistory.com/740) 에서 도움을 받아 해결 하게 되었다.
 
-# 어? 그럼 dump 떠서 파일을 뜨면 어디서도 동일한 환경 이겠는데?
+### 어? 그럼 dump 떠서 파일을 뜨면 어디서도 동일한 환경 이겠는데?
 
 그렇다. 맥북 피씨던 윈도우 피씨던 도커 Mysql 이미지와 덤프 파일만 있으면 동일한 환경에 나만의 개발 DB를 구축 할 수 있다. 
 
@@ -65,7 +65,7 @@ root@xxxxx:/# mysqldump -u root -p ryu > /var/lib/mysql/dump/dump_ryu_20190907.s
 ~~~
 
 
-# 이제 Window에서도 mysql 개발 환경을 구성해 보자
+### 이제 Window에서도 mysql 개발 환경을 구성해 보자
 
 윈도우에서 도커와 볼륨을 마운트 할 때 주의사항은 "c:/" 이런식이 아닌 "/C/" 대소문자 구분해서 작성 해야 한다.
 
@@ -73,27 +73,37 @@ root@xxxxx:/# mysqldump -u root -p ryu > /var/lib/mysql/dump/dump_ryu_20190907.s
 docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1111 -v /C/Users/hmsarang/mysql:/var/lib/mysql --name ryu-mysql mysql
 ~~~
 
-# Mysql 도커 컨테이너는 언제든 날려도 상관없다!!
+### Mysql 도커 컨테이너는 언제든 날려도 상관없다!!
 
 mysql 데이터 저장소를 지정한 영역에 따로 mount 하였기 때문이다.
 
 언제든지 컨테이너를 교체해도 된다.
 
+### 자이제 내가 하고싶은 IDE에서 Docker Mysql DB 띄워보자
 
-# 참고
-- [Docker를 이용한 MySQL 설치 방법](https://jayden-lee.github.io/post/docker/mysql-install/)
-- [Docker(도커) 컨테이너 커밋, 이미지 푸쉬하기](https://nicewoong.github.io/development/2018/03/06/docker-commit-container/)
-- [MySQL by Examples for Beginners](https://www3.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html)
-- [Mysql 사용자 추가, 제거 및 권한 부여](https://cjh5414.github.io/mysql-create-user/)
+~~~ java
+spring:
+  datasource:
+    url: jdbc:mysql://10.0.75.1:3306/ryu
+    username: root
+    password: 1111
+    driver-class-name: com.mysql.jdbc.Driver
 
-# 기타 명령어
+    ...
+~~~
 
-컨테이너, 이미지 삭제 관련
+Window에서는 cmd 명령어인 ipconfig/all 을 입력하면 각 ip주소를 확인하면 된다. (Mac도 같은 방식으로 ip를 찾아보면 된다.)
+
+
+### 자주 사용하는 Docker 명령어
+
+**컨테이너, 이미지 모두 삭제**
 ~~~ java
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
-
 docker rmi $(docker images -q)
-
-docker logs -t container ID
 ~~~
+
+
+### 참고
+- [MySQL by Examples for Beginners](https://www3.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html)

@@ -220,45 +220,44 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1><span id="docker로-난-무얼-하고-싶었나">Docker로 난 무얼 하고 싶었나??</span></h1>
-<p>환경에 제약 없이 개발 DB를 구성하고 싶었다.<br>
-맥북에서 공부한 내용을 실습하면서 개발하고 개발한 소스 Github에 올리고 집에서는 Github에서 소스를 받아서 하면됬다.<br>
-근데, DB는?? 내가 저장한 데이터 DB 컨텍스트 정보는 환경이 바뀌면 매번 설치하고 데이터 싱크 맞추기 위해 쿼리 만들고 스크립트 돌려야 하나?  게다가 집은 Window PC이다… 개발하기도 전에 환경 구성하는 것 때문에 지친다…</p>
-<p>그러다 문득 Docker! Docker로 이미지 만들고 Docker Hub 에 올려 놓으면 그 짜증나는 환경 구성이 해결 되지 않을까??<br>
-Docker를 왜 쓸까? 했는데 나에게 Docker가 필요해진 경우가 생긴 것이다.</p>
-<h1><span id="하지만-반영되지-않는-db-데이터">하지만 반영되지 않는 DB 데이터</span></h1>
+                <h3><span id="docker로-난-무얼-하고-싶었나">Docker로 난 무얼 하고 싶었나??</span></h3>
+<p>환경에 제약 없이 개발 DB를 구성하고 싶었다.  환경이라 함은 Window든 Mac이든 내컴퓨터든 다른 사람 컴퓨터든 말이다. Mac PC에서 공부한 내용을 Github에 올리고 집 Window PC에서도 Github에서 소스를 받아서 하면됬다. 근데, DB는?? 내가 저장한 데이터 DB 컨텍스트 정보는 환경이 바뀌면 매번 설치하고 데이터 싱크 맞추기 위해 쿼리 만들고 스크립트 돌려야 하나?  게다가 집은 Window PC이다.</p>
+<p><strong>개발하기도 전에 환경 구성하는 것 때문에 지친다!!!</strong></p>
+<p>그러다 문득 Docker! Docker로 이미지 만들고 Docker Hub 에 올려 놓으면 그 짜증나는 환경 구성이 해결 되지 않을까?? Docker를 왜 쓸까? 했는데 나에게 Docker가 필요해진 경우가 생긴 것이다.</p>
+<h3><span id="하지만-반영되지-않는-db-데이터">하지만 반영되지 않는 DB 데이터</span></h3>
 <p>mysql 을 이미지를 받아 아래 처럼 셋팅 후</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">- docker pull mysql:<span class="number">5.7</span> </span><br><span class="line">- docker run -d -p <span class="number">3306</span>:<span class="number">3306</span> -e MYSQL_ROOT_PASSWORD=<span class="number">1111</span> --name ryu mysql:<span class="number">5.7</span></span><br><span class="line">- docker exec -it ryu bash</span><br></pre></td></tr></table></figure>
 <p>아무리 삽질을해도 MySql 컨테이너에서 만든 데이터를 Docker Hub에 Push를 해도 반영이 되지 않았다.  알고보니 Docker에서 데이터를 저장하고 싶으면 Docker Container 외 별도 디렉토리(Volume)에 보관을 해야 한다는 것이다. 아래 블로그에서 도움을 받았다.</p>
 <p><a href="https://joonhwan.github.io/2018-11-14-fix-mysql-volume-share-issue/" rel="external nofollow noopener noreferrer" target="_blank">Docker Volume 개념 및 MySql을 Docker상에서 운용하는 방법</a></p>
-<p>Docker Container 가 삭제 되면 데이터는 보관되지 않고 같이 삭제된다. 즉, DB 데이터가 날라간다…</p>
-<h1><span id="어떻게-데이터를-보관-할까-호스트-마운트">어떻게 데이터를 보관 할까?? 호스트 마운트</span></h1>
-<h4><span id="mac-기준">Mac 기준</span></h4>
+<p>Docker Container 가 삭제 되면 데이터는 보관되지 않고 같이 삭제된다. 즉, DB 데이터가 날라간다…<br>
+사실 이것이 Docker에 철학이라 생각한다. Docker 이미지, 컨테이너는 언제든지 갈아 치울수 있어야 하고 그럴려면 상태값을 당연히 보관하고 있으면 안된다.</p>
+<h3><span id="어떻게-데이터를-보관-할까-호스트-마운트">어떻게 데이터를 보관 할까?? 호스트 마운트</span></h3>
+<p><strong>Mac 기준</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d -p <span class="number">3306</span>:<span class="number">3306</span>     \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=<span class="number">1111</span>         \</span><br><span class="line">-v /Users/ryu/mysql:/<span class="keyword">var</span>/lib/mysql     \</span><br><span class="line">--name ryu-mysql mysql</span><br></pre></td></tr></table></figure>
 <p>이런식으로 mysql 이미지에 특정 디렉토리에 내 홈 피씨 (현재 맥북) 에 파일을 공유 할 수 있다.<br>
 즉 Mysql 에서 쌓이는 데이터들을 /User/ryu/mariadb 에 가면 파일을 외부 반출 할 수 있는 것이다.</p>
 <p>참고로 삽질을 많이 했었는데 <a href="https://lemontia.tistory.com/740" rel="external nofollow noopener noreferrer" target="_blank">[docker] MariaDB + 로컬에 데이터저장소 연결</a> 에서 도움을 받아 해결 하게 되었다.</p>
-<h1><span id="어-그럼-dump-떠서-파일을-뜨면-어디서도-동일한-환경-이겠는데">어? 그럼 dump 떠서 파일을 뜨면 어디서도 동일한 환경 이겠는데?</span></h1>
+<h3><span id="어-그럼-dump-떠서-파일을-뜨면-어디서도-동일한-환경-이겠는데">어? 그럼 dump 떠서 파일을 뜨면 어디서도 동일한 환경 이겠는데?</span></h3>
 <p>그렇다. 맥북 피씨던 윈도우 피씨던 도커 Mysql 이미지와 덤프 파일만 있으면 동일한 환경에 나만의 개발 DB를 구축 할 수 있다.</p>
 <p>덤프 파일 명령어는 이렇다.</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@xxxxx:/# mysqldump -u root -p --all-databases &gt; /var/lib/mysql/dump_ryu_20190907.sql</span><br></pre></td></tr></table></figure>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@xxxxx:/# mysqldump -u root -p ryu &gt; /var/lib/mysql/dump/dump_ryu_20190907.sql</span><br></pre></td></tr></table></figure>
-<h1><span id="이제-window에서도-mysql-개발-환경을-구성해-보자">이제 Window에서도 mysql 개발 환경을 구성해 보자</span></h1>
+<h3><span id="이제-window에서도-mysql-개발-환경을-구성해-보자">이제 Window에서도 mysql 개발 환경을 구성해 보자</span></h3>
 <p>윈도우에서 도커와 볼륨을 마운트 할 때 주의사항은 “c:/” 이런식이 아닌 “/C/” 대소문자 구분해서 작성 해야 한다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d -p <span class="number">3306</span>:<span class="number">3306</span> -e MYSQL_ROOT_PASSWORD=<span class="number">1111</span> -v /C/Users/hmsarang/mysql:/<span class="keyword">var</span>/lib/mysql --name ryu-mysql mysql</span><br></pre></td></tr></table></figure>
-<h1><span id="mysql-도커-컨테이너는-언제든-날려도-상관없다">Mysql 도커 컨테이너는 언제든 날려도 상관없다!!</span></h1>
+<h3><span id="mysql-도커-컨테이너는-언제든-날려도-상관없다">Mysql 도커 컨테이너는 언제든 날려도 상관없다!!</span></h3>
 <p>mysql 데이터 저장소를 지정한 영역에 따로 mount 하였기 때문이다.</p>
 <p>언제든지 컨테이너를 교체해도 된다.</p>
-<h1><span id="참고">참고</span></h1>
+<h3><span id="자이제-내가-하고싶은-ide에서-docker-mysql-db-띄워보자">자이제 내가 하고싶은 IDE에서 Docker Mysql DB 띄워보자</span></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    url: jdbc:mysql:<span class="comment">//10.0.75.1:3306/ryu</span></span><br><span class="line">    username: root</span><br><span class="line">    password: <span class="number">1111</span></span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line"></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<p>Window에서는 cmd 명령어인 ipconfig/all 을 입력하면 각 ip주소를 확인하면 된다. (Mac도 같은 방식으로 ip를 찾아보면 된다.)</p>
+<h3><span id="자주-사용하는-docker-명령어">자주 사용하는 Docker 명령어</span></h3>
+<p><strong>컨테이너, 이미지 모두 삭제</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker stop $(docker ps -a -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure>
+<h3><span id="참고">참고</span></h3>
 <ul>
-<li><a href="https://jayden-lee.github.io/post/docker/mysql-install/" rel="external nofollow noopener noreferrer" target="_blank">Docker를 이용한 MySQL 설치 방법</a></li>
-<li><a href="https://nicewoong.github.io/development/2018/03/06/docker-commit-container/" rel="external nofollow noopener noreferrer" target="_blank">Docker(도커) 컨테이너 커밋, 이미지 푸쉬하기</a></li>
 <li><a href="https://www3.ntu.edu.sg/home/ehchua/programming/sql/MySQL_Beginner.html" rel="external nofollow noopener noreferrer" target="_blank">MySQL by Examples for Beginners</a></li>
-<li><a href="https://cjh5414.github.io/mysql-create-user/" rel="external nofollow noopener noreferrer" target="_blank">Mysql 사용자 추가, 제거 및 권한 부여</a></li>
 </ul>
-<h1><span id="기타-명령어">기타 명령어</span></h1>
-<p>컨테이너, 이미지 삭제 관련</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker stop $(docker ps -a -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line"></span><br><span class="line">docker rmi $(docker images -q)</span><br><span class="line"></span><br><span class="line">docker logs -t container ID</span><br></pre></td></tr></table></figure>
 
                 
 
@@ -298,7 +297,7 @@ Docker를 왜 쓸까? 했는데 나에게 Docker가 필요해진 경우가 생�
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Docker로 난 무얼 하고 싶었나??</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">하지만 반영되지 않는 DB 데이터</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">어떻게 데이터를 보관 할까?? 호스트 마운트</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.0.0.1.</span> <span class="toc-nav-text">Mac 기준</span></a></li></ol></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">어? 그럼 dump 떠서 파일을 뜨면 어디서도 동일한 환경 이겠는데?</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">이제 Window에서도 mysql 개발 환경을 구성해 보자</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">Mysql 도커 컨테이너는 언제든 날려도 상관없다!!</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">참고</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">기타 명령어</span></a></li>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Docker로 난 무얼 하고 싶었나??</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">하지만 반영되지 않는 DB 데이터</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">어떻게 데이터를 보관 할까?? 호스트 마운트</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">어? 그럼 dump 떠서 파일을 뜨면 어디서도 동일한 환경 이겠는데?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">이제 Window에서도 mysql 개발 환경을 구성해 보자</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">Mysql 도커 컨테이너는 언제든 날려도 상관없다!!</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">자이제 내가 하고싶은 IDE에서 Docker Mysql DB 띄워보자</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">자주 사용하는 Docker 명령어</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">참고</span></a></li></ol>
         
         </div>
       </aside>
