@@ -67,10 +67,8 @@ root@xxxxx:/# mysqldump -u root -p ryu > /var/lib/mysql/dump/dump_ryu_20190907.s
 
 ### 이제 Window에서도 mysql 개발 환경을 구성해 보자
 
-윈도우에서 도커와 볼륨을 마운트 할 때 주의사항은 "c:/" 이런식이 아닌 "/C/" 대소문자 구분해서 작성 해야 한다.
-
 ~~~ java
-docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1111 -v /C/Users/hmsarang/mysql:/var/lib/mysql --name ryu-mysql mysql
+docker container run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1111 -v c:/Users/hmsarang/mysql:/var/lib/mysql --name ryu-mysql mysql
 ~~~
 
 ### Mysql 도커 컨테이너는 언제든 날려도 상관없다!!
