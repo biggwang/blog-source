@@ -18,7 +18,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Quartz를 활용한 실시간 배치 동적 스케줄러 사용기 - 백문이불여일견
+          Quartz를 활용한 실시간 배치 동적 스케줄러 사용기 - 백문이불여일타
         
     </title>
 
@@ -129,7 +129,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">백문이불여일견</a>
+            <a class="navbar-brand" href="/">백문이불여일타</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -152,6 +152,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -160,13 +167,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -289,12 +289,6 @@ cluster mode가 제대로 동작한다면 노란색 박스 로그와 같이 설�
 <h3><span id="disallowconcurrentexecution">@DisallowConcurrentExecution</span></h3>
 <p>Thread Pool 기반으로 동작하는 Quatrz에서 Job에 대한 Thread 동시 접근으로 인해 데이터 중복을 방지하기 위한 어노테이션 인거 같다.<br>
 나는 동시접근 못하게 코드로 막았는데 이런게 있는줄 알았으면 쉽게 해결했을거 같다.</p>
-<h2><span id="남은것은">남은것은?</span></h2>
-<ul>
-<li>quartz 레퍼런스 문서를 더 꼼꼼히 보고 best pratice 데로 하고있는지 점검</li>
-<li>quartz + spring batch 조합 해보기</li>
-<li>리펙토링</li>
-</ul>
 
                 
 
@@ -308,7 +302,7 @@ cluster mode가 제대로 동작한다면 노란색 박스 로그와 같이 설�
                     
                     
                         <li class="next">
-                            <a href="/2018/12/04/Spring/Spring Validation 처리 방법/" data-toggle="tooltip" data-placement="top" title="Spring Validation 다양한 처리 방법">Next Post &rarr;</a>
+                            <a href="/2018/12/04/Spring/Spring AOP 적용시 주의사항/" data-toggle="tooltip" data-placement="top" title="Spring AOP 적용시 주의사항">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -338,7 +332,7 @@ cluster mode가 제대로 동작한다면 노란색 박스 로그와 같이 설�
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">어떤 시스템인가</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">왜 Quartz를 사용 하였는가</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">quartz clsutering 동작 과정</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">그럼 도대체 clustering 기능은 어떻게 사용한단 말인가</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Quartz 셋팅</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">프로젝트 환경 및 버전</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">Spring 4 일 경우는 아래 추가로 dependency 해주어야 한다.</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">Quartz Spring Bean 등록</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">객체 설명</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.4.1.</span> <span class="toc-nav-text">SchedulerFactoryBean 객체 (org.springframework.scheduling.quartz)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.4.2.</span> <span class="toc-nav-text">AutowiringSpringBeanJobFactory 객체</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">왜 필요한가</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">그럼 왜 AutowiringSpringBeanJobFactory 객체 생성해야 @Autowired 할 수 있었을까??</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.7.</span> <span class="toc-nav-text">Quartz 실행 화면</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.8.</span> <span class="toc-nav-text">그 밖의</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.8.1.</span> <span class="toc-nav-text">@DisallowConcurrentExecution</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.9.</span> <span class="toc-nav-text">남은것은?</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">어떤 시스템인가</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">왜 Quartz를 사용 하였는가</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">quartz clsutering 동작 과정</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">그럼 도대체 clustering 기능은 어떻게 사용한단 말인가</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Quartz 셋팅</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">프로젝트 환경 및 버전</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">Spring 4 일 경우는 아래 추가로 dependency 해주어야 한다.</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">Quartz Spring Bean 등록</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.4.</span> <span class="toc-nav-text">객체 설명</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.4.1.</span> <span class="toc-nav-text">SchedulerFactoryBean 객체 (org.springframework.scheduling.quartz)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.4.2.</span> <span class="toc-nav-text">AutowiringSpringBeanJobFactory 객체</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.5.</span> <span class="toc-nav-text">왜 필요한가</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.6.</span> <span class="toc-nav-text">그럼 왜 AutowiringSpringBeanJobFactory 객체 생성해야 @Autowired 할 수 있었을까??</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.7.</span> <span class="toc-nav-text">Quartz 실행 화면</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.8.</span> <span class="toc-nav-text">그 밖의</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.8.1.</span> <span class="toc-nav-text">@DisallowConcurrentExecution</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
@@ -478,7 +472,7 @@ cluster mode가 제대로 동작한다면 노란색 박스 로그와 같이 설�
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Yungwang Ryu 2019 
+                    Copyright &copy; Yungwang Ryu 2022 
                     <br>
                     Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

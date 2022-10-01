@@ -166,9 +166,3 @@ cluster mode가 제대로 동작한다면 노란색 박스 로그와 같이 설�
 ### @DisallowConcurrentExecution
 Thread Pool 기반으로 동작하는 Quatrz에서 Job에 대한 Thread 동시 접근으로 인해 데이터 중복을 방지하기 위한 어노테이션 인거 같다.
 나는 동시접근 못하게 코드로 막았는데 이런게 있는줄 알았으면 쉽게 해결했을거 같다.
-
-
-## 남은것은?
-- quartz 레퍼런스 문서를 더 꼼꼼히 보고 best pratice 데로 하고있는지 점검
-- quartz + spring batch 조합 해보기
-- 리펙토링

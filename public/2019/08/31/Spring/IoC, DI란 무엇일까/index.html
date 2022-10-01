@@ -18,7 +18,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          IoC, DI란 무엇일까 - 백문이불여일견
+          IoC, DI란 무엇일까 - 백문이불여일타
         
     </title>
 
@@ -125,7 +125,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">백문이불여일견</a>
+            <a class="navbar-brand" href="/">백문이불여일타</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -148,6 +148,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -156,13 +163,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -249,21 +249,21 @@ B라는 객체가 스프링 컨테이너에게 관리되고 있는 Bean이라면
 <p>제어권은 상위 클래스인 IronFactory에게 있습니다.<br>
 하위 클래스에서 구현한 코드는 상위 클래스가 어떻게 되는지 모릅니다. 단지 구현해야하는 부분을 구현하였고 구현한 코드가 언제 어떻게 실행 될지는 모릅니다. 상위 클래스에서 알아서 필요할 때 구현한 메소드를 사용하게 됩니다. 바로 이처럼 코드 흐름이 제3자에게 위임되는 것이 IoC 모델이라고 합니다.</p>
 <h3><span id="그럼-왜-ioc를-spring에서-사용-하였을까요-분명히-이점이-있을텐데요">그럼 왜 IoC를 Spring에서 사용 하였을까요? 분명히 이점이 있을텐데요</span></h3>
-<p>IoC는 Spring에서만 사용되는 개념이 아닙니다. 프로그래밍 패턴이기때문에 범용적으로 쓰이며 작게는 객체간에 디자인 패턴으로 크게는 컨테이너, 프레임워크 역활에 적합한 구조이기 때문에 상황에 맞게 사용되는 프로그래밍 모델인 것이죠. Spring은 Framework입니다. 그렇기 때문에 흐름을 직접 핸들링 해줘야 하는것이고 자연스럽게 적합한 모델, 패턴을 적용해야 했고 그래서 Framework에 적합한 IoC, DI 개념 모델이 들어가게 된것이조.</p>
+<p>IoC는 Spring에서만 사용되는 개념이 아닙니다. 프로그래밍 패턴이기때문에 범용적으로 쓰이며 작게는 객체간에 디자인 패턴으로 크게는 컨테이너, 프레임워크 역할에 적합한 구조이기 때문에 상황에 맞게 사용되는 프로그래밍 모델인 것이죠. Spring은 Framework입니다. 그렇기 때문에 흐름을 직접 핸들링 해줘야 하는것이고 자연스럽게 적합한 모델, 패턴을 적용해야 했고 그래서 Framework에 적합한 IoC, DI 개념 모델이 들어가게 된것이조.</p>
 <p>그럼 이점은 무엇이 있을까요?<br>
-IoC 프로그램 모델은 곧 역활과 책임에 분리라는 내용과 관련이 있다고 생각합니다.<br>
+IoC 프로그램 모델은 곧 역할과 책임에 분리라는 내용과 관련이 있다고 생각합니다.<br>
 왜 내가 직접 객체를 제어 하지 않고 다른 제 3자가 제어를 위임하게 하고 나는 수동적으로 따라가는 길을 택하였을까요??</p>
-<p>이는 객체지향 프로그래밍과 아주 관련이 깊다고 생각합니다. 객체지향 프로그래밍은 각 객체마다 자기의 역활과 책임을 온전히 다하며 서로 협력하며 변경에 유연한 프로그래밍을 할 수 있는 프로그래밍 기법입니다. 즉, 각 객체마다 올바른 캡슐화를 통해 높은 응집도와 낮은 결합도를 이루어나가는 것이 핵심중에 핵심이죠.</p>
-<p>이러한 관점에서 제어의 역전으로 인해 제 3자 즉 다른 객체, 다른 컨테이너에게 제어에 대한 역활과 책임을 위임하고 다시말해 신경쓰지 않고 지금 내가 하고자 하는 역활과 책임에 관심이 있는것이죠. 왜 이렇게 할까요? 답은 <strong>변경에 유연한 코드 구조를 가져가기 위해서</strong>입니다. 내가 작성하고자 하는 코드에서 객체를 생성, 소멸 등에 관리 코드와 함께 비지니스 코드까지 들어가면 어떨까요??</p>
+<p>이는 객체지향 프로그래밍과 아주 관련이 깊다고 생각합니다. 객체지향 프로그래밍은 각 객체마다 자기의 역할과 책임을 온전히 다하며 서로 협력하며 변경에 유연한 프로그래밍을 할 수 있는 프로그래밍 기법입니다. 즉, 각 객체마다 올바른 캡슐화를 통해 높은 응집도와 낮은 결합도를 이루어나가는 것이 핵심중에 핵심이죠.</p>
+<p>이러한 관점에서 제어의 역전으로 인해 제 3자 즉 다른 객체, 다른 컨테이너에게 제어에 대한 역할과 책임을 위임하고 다시말해 신경쓰지 않고 지금 내가 하고자 하는 역할과 책임에 관심이 있는것이죠. 왜 이렇게 할까요? 답은 <strong>변경에 유연한 코드 구조를 가져가기 위해서</strong>입니다. 내가 작성하고자 하는 코드에서 객체를 생성, 소멸 등에 관리 코드와 함께 비지니스 코드까지 들어가면 어떨까요??</p>
 <p>기능은 얼마든지 변경될 수 있습니다. 자, A라는 객체를 생성하고 있었는데 A객체는 삭제하고 B객체를 추가해야 한다고 하면 어떻게 될까요?? 뭐 한 곳에서만 객체 생성을 추가했다면 한 곳에서만 변경하면 되겠죠… 그럼 10곳에서 A라는 객체를 사용하였다고 해보죠. 그럼 10번을 수정해줘야 겠네요?</p>
 <p>또 다른 예를 들어보죠. 객체 생명 주기를 직접 관리하기 때문에 객체 생성, 삭제를 직접 할 수 있습니다. 근데 도메인 모델상 객체 삭제는 절대 하면 안된다고 해보죠. 하지만 직접 개발자가 객체를 핸들링 할 수 있기 때문에 삭제하거나 아니면 새로운 객체를 생성 할 수 도 있습니다. 다시 말해서 권한이 너무 많다는 것입니다. 이것은 곧 캡슐화 위반을 일으킨 것입니다.</p>
 <p><strong>엔터프라이즈 차원에서 수많은 객체들을 편리하게 관리하기 위함입니다.</strong></p>
 <p>현재 설명한 객체는 등장한것이 2~3개 밖에 되지 않습니다.<br>
-각 객체마다 협력을 하다보면 IoC역활을 하는 객체들이 계속 생길수 있습니다. 그럼 개발자는 그런 IoC 역활을 하는 객체를 계속 알고 개발을 해야 합니다.<br>
+각 객체마다 협력을 하다보면 IoC역할을 하는 객체들이 계속 생길수 있습니다. 그럼 개발자는 그런 IoC 역할을 하는 객체를 계속 알고 개발을 해야 합니다.<br>
 1~2개는 괜찮겠죠 하지만 개발하다 보면 또 유지보수 하다보면 객체를 계속 생길수 있습니다. 요구사항이 변하니까요.</p>
 <p>그래서 스프링은 Application Context 로 모든 객체를 일괄 관리하는 IoC를 Wrapping 하는 개념이라 할까요? 아무튼 그렇게 보따리 해서 컨테이너가 되어 객체에 의존관계 주입, 객체 생명 주기 관리, 그 밖에 아직 제가 알지 못하는 영역에서 많은 유용한일을 담당 할 것입니다.</p>
 <p><strong>자 그럼 질문을 다시 해보겠습니다. IoC 왜 제어를 역전 시켰을까요? 어떤 이점일까요?</strong></p>
-<p>객체를 관리해주는 독립적인 존재 (거시적으로는 컨테이너, 미시적으로는 디지인패턴적용)와 그 외 내가 구현 하고자 하는 부분으로 각각 관심을 분리하고 서로에 역활을 충실히하면서 변경에 유연한 코드를 작성 할 수 있는 구조이기 때문에 제어를 역전 하였다. 저는 이렇게 생각하였습니다.</p>
+<p>객체를 관리해주는 독립적인 존재 (거시적으로는 컨테이너, 미시적으로는 디지인패턴적용)와 그 외 내가 구현 하고자 하는 부분으로 각각 관심을 분리하고 서로에 역할을 충실히하면서 변경에 유연한 코드를 작성 할 수 있는 구조이기 때문에 제어를 역전 하였다. 저는 이렇게 생각하였습니다.</p>
 <p>스프링 컨테이너 차원에서는 엔터프라이즈 개발에 적합하게 수많은 객체 생명주기를 관리 하고 의존 관계를 설정해주고 그 외 많은 기능들을 제공하여 개발자는 비지니스 로직에 집중 할 수 있게 해주는것이죠.</p>
 <h3><span id="그럼-spring-di-무엇을-의미하는-걸까요">그럼 Spring DI 무엇을 의미하는 걸까요?</span></h3>
 <p>Spring Framework란 무엇인가? 장점은 무엇인가? 조사를 하다보면 반드시 나오는 DI입니다.<br>
@@ -314,15 +314,8 @@ Spring 에서는 IoC를 구체적으로 DI라는 방식을통해서 의존성 �
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mark15</span> <span class="keyword">implements</span> <span class="title">IronManService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"나노입자 아이언맨 공격!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 생략</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>DI라는 개념 또한 스프링에서 나온 개념이 아닙니다.</p>
 <h3><span id="그럼-ioc와-di-무엇이-다른걸까요">그럼 IoC와 DI 무엇이 다른걸까요??</span></h3>
-<p>IoC는 객체의 흐름, 생명주기관리등 독립적인 제 3자에게 역활과 책임을 위임하는 방식에 프로그래밍 모델입니다.<br>
+<p>IoC는 객체의 흐름, 생명주기관리등 독립적인 제 3자에게 역할과 책임을 위임하는 방식에 프로그래밍 모델입니다.<br>
 디자인패턴에서도 찾아볼수 있고 다른 컨테이너를 가진 프레임워크들에서도 찾아볼 수 있습니다. 범용적인 표현이죠 하지만 DI는 인터페이스를 통해 다이나믹하게 객체를 주입을 하여 유연한 프로그래밍을 가능하게 하는 패턴으로 좀 더 구첵적인 의미인것이죠.</p>
-<h3><span id="남은것들">남은것들</span></h3>
-<ul>
-<li>도대체 Spring은 왜 DI를 잘 구현했다고 하였을까</li>
-<li>IoC, <a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial#java-dependency-injection-8211-service-components" rel="external nofollow noopener noreferrer" target="_blank">DI 예제</a> 직접 구현해보기</li>
-<li>생성자 주입은 언제 사용할까??</li>
-<li>Setter 주입은 언제 사용할까??</li>
-</ul>
 
                 
 
@@ -336,7 +329,7 @@ Spring 에서는 IoC를 구체적으로 DI라는 방식을통해서 의존성 �
                     
                     
                         <li class="next">
-                            <a href="/2019/08/31/JS/document ready 의미/" data-toggle="tooltip" data-placement="top" title="document ready 의미">Next Post &rarr;</a>
+                            <a href="/2019/08/18/ETC/서버가 여러대 있때 redirect 사용시 발생하는 문제/" data-toggle="tooltip" data-placement="top" title="서버가 여러대 있때 redirect 사용시 발생하는 문제">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -366,7 +359,7 @@ Spring 에서는 IoC를 구체적으로 DI라는 방식을통해서 의존성 �
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Why?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">목표</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">IoC (Inversion of Control) 란 무엇인가?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">그럼 왜 IoC를 Spring에서 사용 하였을까요? 분명히 이점이 있을텐데요</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">그럼 Spring DI 무엇을 의미하는 걸까요?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text"></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">그럼 IoC와 DI 무엇이 다른걸까요??</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">남은것들</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Why?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">목표</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">IoC (Inversion of Control) 란 무엇인가?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">그럼 왜 IoC를 Spring에서 사용 하였을까요? 분명히 이점이 있을텐데요</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">그럼 Spring DI 무엇을 의미하는 걸까요?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text"></span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">그럼 IoC와 DI 무엇이 다른걸까요??</span></a></li></ol>
         
         </div>
       </aside>
@@ -502,7 +495,7 @@ Spring 에서는 IoC를 구체적으로 DI라는 방식을통해서 의존성 �
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Yungwang Ryu 2019 
+                    Copyright &copy; Yungwang Ryu 2022 
                     <br>
                     Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">

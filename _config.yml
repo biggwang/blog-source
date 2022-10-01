@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 백문이불여일견
-subtitle: 어제보다 더 보기 좋고 유연한 코드를 작성하자
+title: 백문이불여일타
+subtitle: 백번보는것보다 한번코딩하는게 낫다
 author: Yungwang Ryu
 language:
 timezone:
@@ -19,7 +19,7 @@ permalink_defaults:
 #Custom Setting Start
      
 # Site settings
-SEOTitle: 백문이불여일견
+SEOTitle: 백문이불여일타
 email: ghmryg@gmail.com
 description: "인지하는 개발자"
 keyword: ""

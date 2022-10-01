@@ -18,7 +18,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Mac에서도 Window 에서도 도커로 동일한 Mysql DB 환경 만들기 - 백문이불여일견
+          Mac에서도 Window 에서도 도커로 동일한 Mysql DB 환경 만들기 - 백문이불여일타
         
     </title>
 
@@ -127,7 +127,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">백문이불여일견</a>
+            <a class="navbar-brand" href="/">백문이불여일타</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -150,6 +150,13 @@
 
                         
                         <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -158,13 +165,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -243,8 +243,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@xxxxx:/# mysqldump -u root -p --all-databases &gt; /var/lib/mysql/dump_ryu_20190907.sql</span><br></pre></td></tr></table></figure>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@xxxxx:/# mysqldump -u root -p ryu &gt; /var/lib/mysql/dump/dump_ryu_20190907.sql</span><br></pre></td></tr></table></figure>
 <h3><span id="이제-window에서도-mysql-개발-환경을-구성해-보자">이제 Window에서도 mysql 개발 환경을 구성해 보자</span></h3>
-<p>윈도우에서 도커와 볼륨을 마운트 할 때 주의사항은 “c:/” 이런식이 아닌 “/C/” 대소문자 구분해서 작성 해야 한다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d -p <span class="number">3306</span>:<span class="number">3306</span> -e MYSQL_ROOT_PASSWORD=<span class="number">1111</span> -v /C/Users/hmsarang/mysql:/<span class="keyword">var</span>/lib/mysql --name ryu-mysql mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d -p <span class="number">3306</span>:<span class="number">3306</span> -e MYSQL_ROOT_PASSWORD=<span class="number">1111</span> -v c:/Users/hmsarang/mysql:/<span class="keyword">var</span>/lib/mysql --name ryu-mysql mysql</span><br></pre></td></tr></table></figure>
 <h3><span id="mysql-도커-컨테이너는-언제든-날려도-상관없다">Mysql 도커 컨테이너는 언제든 날려도 상관없다!!</span></h3>
 <p>mysql 데이터 저장소를 지정한 영역에 따로 mount 하였기 때문이다.</p>
 <p>언제든지 컨테이너를 교체해도 된다.</p>
@@ -435,7 +434,7 @@
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Yungwang Ryu 2019 
+                    Copyright &copy; Yungwang Ryu 2022 
                     <br>
                     Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a> 
                     <span style="display: inline-block; margin: 0 5px;">
