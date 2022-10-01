@@ -2,13 +2,6 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://biggwang.github.io/tags/Design-Patterns/</loc>
-        <lastmod>2019-07-10T14:42:50.438Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://biggwang.github.io/tags/%EA%B0%9C%EB%B0%9C%EC%9D%BC%EB%B0%98/</loc>
         <lastmod>2019-07-10T14:43:29.736Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -23,29 +16,8 @@
     </url>
 
     <url>
-        <loc>https://biggwang.github.io/tags/OS/</loc>
-        <lastmod>2019-07-10T14:44:29.326Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://biggwang.github.io/tags/API/</loc>
         <lastmod>2019-07-10T14:44:52.390Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://biggwang.github.io/tags/Framework/</loc>
-        <lastmod>2019-07-16T15:41:42.742Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://biggwang.github.io/tags/Spring/</loc>
-        <lastmod>2019-07-16T15:41:42.742Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -58,22 +30,8 @@
     </url>
 
     <url>
-        <loc>https://biggwang.github.io/tags/Book/</loc>
-        <lastmod>2019-08-18T06:55:34.986Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://biggwang.github.io/tags/Experience/</loc>
         <lastmod>2019-08-19T13:24:56.702Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://biggwang.github.io/tags/Learnning/</loc>
-        <lastmod>2019-09-22T07:00:34.641Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -88,6 +46,48 @@
     <url>
         <loc>https://biggwang.github.io/tags/Quartz/</loc>
         <lastmod>2022-09-30T13:32:22.995Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/tags/Book/</loc>
+        <lastmod>2022-10-01T02:31:15.992Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/tags/Framework/</loc>
+        <lastmod>2022-10-01T02:32:11.302Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/tags/Spring/</loc>
+        <lastmod>2022-10-01T02:32:11.302Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/tags/CS/</loc>
+        <lastmod>2022-10-01T02:32:25.504Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/tags/Learnning/</loc>
+        <lastmod>2022-10-01T02:33:46.319Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/tags/Design-Patterns/</loc>
+        <lastmod>2022-10-01T02:34:28.866Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

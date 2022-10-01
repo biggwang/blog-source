@@ -6,8 +6,8 @@ subtitle:
 header-img: "bg_computer.jpg"
 tags: 
 - Learnning
-catagories:
-- Docker
+categories:
+- Infrastructure
 ---
 
 ### Docker로 난 무얼 하고 싶었나??

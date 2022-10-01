@@ -5,9 +5,9 @@ date: 2019-01-03 23:45:00
 subtitle:
 header-img: "bg_computer.jpg"
 tags:
-- OS
-catagories:
-- OS
+- CS
+categories:
+- CS
 ---
 
 ## 들어가며

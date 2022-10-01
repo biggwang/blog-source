@@ -7,7 +7,7 @@ header-img: "bg_computer.jpg"
 tags:
 - Framework
 - Spring
-catagories:
+categories:
 - Spring
 ---
 

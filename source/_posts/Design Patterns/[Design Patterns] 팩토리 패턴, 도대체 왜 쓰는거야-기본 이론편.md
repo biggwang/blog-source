@@ -6,7 +6,7 @@ subtitle: 속 시원히 알게 되는 팩토리 패턴 개념
 header-img: "bg_computer.jpg"
 tags:
 - Design Patterns
-catagories:
+categories:
 - Design Patterns
 ---
 

@@ -6,7 +6,7 @@ subtitle: 템플릿 메소드 패턴 파헤치기
 header-img: "bg_computer.jpg"
 tags:
 - Design Patterns
-catagories:
+categories:
 - Design Patterns
 ---
 

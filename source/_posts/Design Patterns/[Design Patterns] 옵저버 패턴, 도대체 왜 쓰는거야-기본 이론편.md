@@ -6,7 +6,7 @@ subtitle: 옵저버 패턴 파헤치기
 header-img: "bg_computer.jpg"
 tags:
 - Design Patterns
-catagories:
+categories:
 - Design Patterns
 ---
 

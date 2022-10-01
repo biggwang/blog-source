@@ -4,7 +4,7 @@ catalog: true
 date: 2019-08-31 10:01:00
 subtitle: 
 header-img: "bg_computer.jpg"
-catagories:
+categories:
 - Spring
 ---
 
