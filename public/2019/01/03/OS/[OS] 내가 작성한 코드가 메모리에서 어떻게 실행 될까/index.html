@@ -221,9 +221,8 @@
                 post-container">
 
                 <h2><span id="들어가며">들어가며</span></h2>
-<p>패스트캠퍼스 OS 파트 이준희 강사님 강의를 듣고 이해한 내용을 Java로 대입하여 <strong>코드가 실제 메모리 영역에서 어떻게 동작</strong> 하는지 적용해보겠다.<br>
-자바는 인터프리터로 해석하기도 하고 한꺼번에 컴파일해서 실행하기도 하지만 핵심은 코드가 메모리에서 어떻게 동작하는지 정리해본다.  또한 초안 단계라 지속적으로 내용을 다듬고 정리하여 정확하고 완성도 있게 만들어 보자</p>
-<h2><span id="포스팅-목표">포스팅 목표</span></h2>
+<p>자바는 인터프리터로 해석하기도 하고 한꺼번에 컴파일해서 실행하기도 하지만 핵심은 코드가 메모리에서 어떻게 동작하는지 정리해본다.</p>
+<h2><span id="목표">목표</span></h2>
 <p>Java 코드가 OS에게 할당받은 JVM위 메모리 영역에서 어떻게 움직이는지 확실하게 다른 사람을 이해시켜보자</p>
 <p>우선, 아래와 같은 코드가 있다고 하자</p>
 <img src="/2019/01/03/OS/[OS]%20내가%20작성한%20코드가%20메모리에서%20어떻게%20실행%20될까/OS_process_code.png">
@@ -245,19 +244,17 @@
 <p>Stack에 쌓일때 이용되는 레지스터는 아래와 같다.</p>
 <img src="/2019/01/03/OS/[OS]%20내가%20작성한%20코드가%20메모리에서%20어떻게%20실행%20될까/OS_register.png">  
 <h4><span id="program-counter">Program Counter</span></h4>
+<p>현재 실행되고 있는 코드의 위치값을 저장한다.</p>
 <p>이때 CODE영역에서는 코드가 한줄 실행 될때마다 해당 코드에 메모리 주소값이 Program Counter Register에 계속 값이 바뀐다.</p>
 <p>메소드가 실행되면 return address값이 stack에 입력되면 그다음 파라미터 값들이 차례데로 입력된다. 또한 메소드내 선언 된 지역변수 또한 다음 stack에 쌓이게 된다.</p>
 <h4><span id="stack-pointer">Stack Pointer</span></h4>
 <p>이때 stack에 쌓이면 Program Counter와 같이 Stack Pointer 라는게 존재하는데 마찬가지로 Stack 채워질때 마다 해당 주소가 계속 바뀐다고 생각하면된다.</p>
 <p>code영역에 보이는 바와 같이 함수안에 함수가 선언되면 마찬가지로 제일 먼저 return address가 stack에 입력되고 코드데로 처리가 된다.</p>
 <h4><span id="ebp">EBP</span></h4>
-<p>이때 EBP라는 Register가 있는데 하는 역활은 함수내 함수 호출이 계속 이루어지다가 만약 오류가 발생 했을 때 어디서 오류가 발생했는지 빠르게 함수를 트래킹 하기 위해 존재하는 레지스터 이다.  Stack Pointer에 바로 다음 주소 값을 가리킨다고 생각하면 된다.</p>
+<p>만약 오류가 발생 했을 때 어디서 오류가 발생했는지 빠르게 함수를 트래킹 하기 위해 존재하는 레지스터이다. Stack Pointer에 바로 다음 주소 값을 가리킨다고 생각하면 된다.</p>
 <h4><span id="eax">EAX</span></h4>
 <p>함수에 대한 return 값을 보관하고 있는 레지스터 이다. return total 하면 total값은 3이기 때문에 3이 EAX 레지스터에 들어가게 된다.</p>
 <p>return이 되고 나면 함수를 빠져 나온것이기 때문에 0FFAH부터 차근차근 위로 올라가 Stack이 비워지게 되며 main함수까지 다 끝나면 stack frame은 비워지게 된다.</p>
-<h2><span id="마치며">마치며</span></h2>
-<p>강의를 여러번 듣고 겨우 큰 그림은 이해한거 같다.<br>
-로우레벨단위를 단시간 안에 내것으로 만들긴 힘들겠지만 지속적으로 기반지식이 쌓여 이해한 내용을 여기에 계속 업데이트하여 확실한 지식을 만들어 놓자</p>
 
                 
 
@@ -301,7 +298,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">들어가며</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">포스팅 목표</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">JVM이 OS에게 메모리에 할당 요청을 한다.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">자바 컴파일러가 .java 파일을 .class 파일(byte code)로 변환한다.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">동작</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">Program Counter</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">Stack Pointer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">EBP</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.4.</span> <span class="toc-nav-text">EAX</span></a></li></ol></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">마치며</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">들어가며</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">목표</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.1.</span> <span class="toc-nav-text">JVM이 OS에게 메모리에 할당 요청을 한다.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.2.</span> <span class="toc-nav-text">자바 컴파일러가 .java 파일을 .class 파일(byte code)로 변환한다.</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.</span> <span class="toc-nav-text">동작</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.1.</span> <span class="toc-nav-text">Program Counter</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.2.</span> <span class="toc-nav-text">Stack Pointer</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.3.</span> <span class="toc-nav-text">EBP</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.3.4.</span> <span class="toc-nav-text">EAX</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>

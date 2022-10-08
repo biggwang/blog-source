@@ -72,13 +72,6 @@
     </url>
 
     <url>
-        <loc>https://biggwang.github.io/tags/CS/</loc>
-        <lastmod>2022-10-01T02:32:25.504Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://biggwang.github.io/tags/Learnning/</loc>
         <lastmod>2022-10-01T02:33:46.319Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -88,6 +81,13 @@
     <url>
         <loc>https://biggwang.github.io/tags/Design-Patterns/</loc>
         <lastmod>2022-10-01T02:34:28.866Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://biggwang.github.io/tags/CS/</loc>
+        <lastmod>2022-10-01T12:09:47.344Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
