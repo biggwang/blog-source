@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="인지하는 개발자">
+    <meta name="keyword" content="">
+    <meta property="og:title" content="biggwang의 개발 블로그">
+    <meta property="og:description" content="백문이불여일견">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          카오스몽키로 동적으로 어플리케이션 장애 주입하기 - 백문이불여일타
+        
+    </title>
+
+    <link rel="canonical" href="https://biggwang.github.io/2022/10/18/Component/카오스몽키로 동적으로 어플리케이션 장애 주입하기/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css"> -->
+
+    <link rel="canonical" href="https://biggwang.github.io/2022/10/18/component/카오스몽키로 동적으로 어플리케이션 장애 주입하기/">
+
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <!-- <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/nanumbrushscript.css" rel="stylesheet" type="text/css"> -->
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('bg_computer.jpg')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#Component" title="Component">Component</a>
+                            
+                        </div>
+                        <h1>카오스몽키로 동적으로 어플리케이션 장애 주입하기</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by Yungwang Ryu on
+                            2022-10-18
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">백문이불여일타</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3><span id="배경">배경</span></h3>
+<p>“특정 엔드포인트 오류 났을때 화면을 보고 싶은데 어떻게 해요?”<br>
+“타임아웃 났을때 서비스가 어떻게 되는지 보고 싶은데 어떻게 해요?”</p>
+<p>이런 요구사항을 받았을때, 생각나는건 특정 파라미터 하드코딩하여 if문을 추가하거나<br>
+phase 환경이 개발용 운영용 클래스를 분리하는 방법으로 했다.</p>
+<p>이러한 방식은 나이스하지 않다고 생각했고 이때 스치듯 카오스몽키가 생각이 났다.<br>
+이참에 사용 방법을 <a href="https://github.com/biggwang/chaos-monkey" rel="external nofollow noopener noreferrer" target="_blank">예제</a>를 통해서 정리해보고 실무에 적용하여 하드코딩하지 않고 런타임 환경에서 장애를 주입하여 유연한 테스트 및 장애 대응 훈련을 대비해 보도록 해보자</p>
+<h3><span id="카오스몽키">카오스몽키</span></h3>
+<p>카오스몽키란 넷플릭스에서 만든 장애주입이 가능한 오픈소스 라이브러이다.<br>
+넷플릭스에서 AWS상 마이크로서비스에 대해 장애를 주입시킴으로써 대응 훈련하기 위해 만들어 졌다고한다. 이밖에도 region, zone 레벨에 장애주입이 가능한 카오스콩, 카오스고릴라도 있다.</p>
+<p>여기서는 어플리케이션 레벨에서 장애주입이 가능한 카오스몽키에 대해서 케이스별로 활용 방법을 정리해 보자</p>
+<img src="/2022/10/18/Component/카오스몽키로%20동적으로%20어플리케이션%20장애%20주입하기/chaos-type.png">
+<h3><span id="카오스몽키-동작-방식">카오스몽키 동작 방식</span></h3>
+<p>공식 <a href="https://codecentric.github.io/chaos-monkey-spring-boot/" rel="external nofollow noopener noreferrer" target="_blank">문서</a>를 보면 AOP로 공격을 트리거 하는 방식으로 진행되며 어느 부분(spring bean)에 어떤 공격 (지연, 예외, 셧다운)을 할지 정해 주기만 하면 된다. 참고로 지연을 설정하게 되면 카오스몽키는 Thread.sleep()을 통해 지연을 시킨다.</p>
+<img src="/2022/10/18/Component/카오스몽키로%20동적으로%20어플리케이션%20장애%20주입하기/chaos-monkey-work.png">
+<h3><span id="사전-준비">사전 준비</span></h3>
+<p>먼저 카오스콩키 장애 주입 방식을 yml이 아닌 api로 하려고 한다.<br>
+yml로 설정 하면 설정값이 바뀔때 마다 서버 재시작이 필요하여 유연성이 떨어지기 때문이다.<br>
+따라서 http 요청을 편리하게 하기 위해 <a href="https://httpie.io/docs/cli" rel="external nofollow noopener noreferrer" target="_blank">httpie</a>를 설치하여 진행 하였다.</p>
+<h3><span id="카오스몽키-적용-하기-feat-cm4sb">카오스몽키 적용 하기 (feat: CM4SB)</span></h3>
+<p>스프링부트에 적용하는 방법은 매우 간단하다.<br>
+<a href="https://codecentric.github.io/chaos-monkey-spring-boot/latest/#_adding_chaos_monkey_for_spring_boot" rel="external nofollow noopener noreferrer" target="_blank">문서</a>에 나온것 처럼 라이브러리 의존을 추가하고 yml profile에 chaos-monkey를 추가하고 서버를 올리면 카오스몽키로고가 보이면 성공이다.</p>
+<h3><span id="시나리오-restcontroller만-요청-마다-2s-~-5s-지연-시키기">시나리오: RestController만 요청 마다 2s ~ 5s 지연 시키기</span></h3>
+<p>level = 1로 설정 하게 되면 요청할때 마다 지연이 발생하게 되고 level=3으로 하게 되면 3번중 1번꼴로 지연이 발생 된다. 확인 할 때 watchedCustomService 설정이 되어 있으면 RestController 이더라도 지연이 되지 않으니 설정을 먼저 초기화 한 후에 진행해야 한다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 공격 설정 및 와쳐 확인</span></span><br><span class="line">http localhost:<span class="number">8080</span>/actuator/chaosmonkey</span><br><span class="line"></span><br><span class="line"><span class="comment">// 설저 초기화</span></span><br><span class="line">http post localhost:<span class="number">8080</span>/actuator/chaosmonkey/watchers rest_controller=<span class="keyword">true</span> component=<span class="keyword">false</span> watched_custom_services:=<span class="string">"[]"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 공격 주입</span></span><br><span class="line">http POST localhost:<span class="number">8080</span>/actuator/chaosmonkey/assaults level=<span class="number">1</span> latencyRangeStart=<span class="number">2000</span> latencyRangeEnd=<span class="number">5000</span> latencyActive=<span class="keyword">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 엔드포인 확인</span></span><br><span class="line">http post localhost:<span class="number">8080</span>/send receiverName=<span class="string">"루피"</span> amount=<span class="number">100</span></span><br></pre></td></tr></table></figure>
+<img src="/2022/10/18/Component/카오스몽키로%20동적으로%20어플리케이션%20장애%20주입하기/jmeter-1.png">
+<p>jmeter로 실행결과 level=3 설정시 약 3번 요청당 1번꼴로 랜덤하게 지연이 발생하고 있는데, 랜덤하게 라고 말한이유는 무조건 3번째 요청일때 지연이 발생하는것은 아니기 때문이다.</p>
+<p>하지만 이걸로는 내가 사용해야 하는 이유에 충분치 않다. 이러면 모든 @RestController로 선언된 모든 엔드포인트가 일괄 적용 되어 원치 않는 엔드포인트도 지연이 발생 되기 때문이다. 실무에서 이러면 개발서버에서 다른 사용자들까지 영향을 주기 때문에 이정도로는 사용하기 적절하지 못하다.</p>
+<h3><span id="시나리오-특정-메소드에만-적용">시나리오: 특정 메소드에만 적용</span></h3>
+<p>그렇기 때문에 특정 서비스 또는 특정 메소드만 장애가 주입되도록 하면 그나마 주입 범위가 축소가 된다. 빈이 service 레이어 라면 service=true 라고 하고 특정 메소드를 지정하면 된다.<br>
+참고로 conponent, repositoy, 특정 bean, outbound에 대한 restTemplate 도 있다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http post localhost:<span class="number">8080</span>/actuator/chaosmonkey/watchers restController=<span class="keyword">false</span> service=<span class="keyword">true</span></span><br><span class="line">http post localhost:<span class="number">8080</span>/actuator/chaosmonkey/assaults watchedCustomServices:=<span class="string">'["com.chaos.monkey.SendService.send"]'</span></span><br><span class="line">http post localhost:<span class="number">8080</span>/send amount=<span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p>이렇게 하면 지정한 메소드에서만 지연이 발생 한다.<br>
+하지만 아직도 부족하다. 장애 주입 범위는 많이 축소 되었지만 예를 들어 어떤 사람은 송금은 되게 해야 하고 QA하는 담당자는 장애 테스트가 필요하면 어떻게 해야 할까? 다시말해 특정 유저 특정 파라미터로 넘어온 경우에만 동작 시키는 방법이 없을까?</p>
+<h3><span id="시나리오-특정-엔드포인트에-특정-파라미터인-경우-레이턴시-적용">시나리오: 특정 엔드포인트에 특정 파라미터인 경우 레이턴시 적용</span></h3>
+<p>이전까지는 너무 넓은 범위에서 카오스몽키가 실행되었지만, 실무에서 쓰기에는 장애 주입 범위가 너무 넓어 부담스러웠다.<br>
+하지만 특정 조건에서만 카오스몽키 트리거를 걸수 있는 기능을 <a href="https://codecentric.github.io/chaos-monkey-spring-boot/latest/#Toggles" rel="external nofollow noopener noreferrer" target="_blank">제공</a> 한다. (이것이 없었으면 쓰지 않았을듯…)</p>
+<p>파라미터 체크는 GET인 경우는 URI나 쿼리 파라미터로 하고, POST인 경우는 body에 특정 파라미터로 넘어온 경우에 카오스 몽키가 동작 하도록 하려고 한다.</p>
+<p>POST 요청시 body를 읽기 위해 inputStream을 가져와야 하는데 이미 스프링컨테이너가 body를 객체에 맵핑하기 위해 한번 getInputStream을 하였기 때문에 body값이 항상 empty로 나오게 된다.</p>
+<p>따라서 한번 읽어온 body 값을 wrapper로 감싸서 보관하여 필터 등록을 해야 하는데 자세한 내용은 <a href="https://github.com/biggwang/chaos-monkey" rel="external nofollow noopener noreferrer" target="_blank">예제</a>를 참고 하거나 구글링을 통해서 구현하면 된다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChaosTriggerCondition</span> <span class="keyword">implements</span> <span class="title">ChaosToggles</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEnabled</span><span class="params">(String toggleName)</span> </span>&#123;</span><br><span class="line">        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();</span><br><span class="line">        <span class="keyword">return</span> isTrigger(request); <span class="comment">// 트리거 되는 조건을 넣어 주면 된다.</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3><span id="시나리오-특정-엔드포인트에-특정-exception-발생시키기">시나리오: 특정 엔드포인트에 특정 Exception 발생시키기</span></h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">http post localhost:<span class="number">8080</span>/actuator/chaosmonkey/watchers restController=<span class="keyword">true</span> component=<span class="keyword">true</span></span><br><span class="line">http post localhost:<span class="number">8080</span>/actuator/chaosmonkey/assaults \</span><br><span class="line">    exceptionsActive=<span class="keyword">true</span> \</span><br><span class="line">    level=<span class="number">1</span> \</span><br><span class="line">    exception:=<span class="string">'&#123;"type":"org.springframework.web.client.RestClientException"&#125;'</span> \</span><br><span class="line">    watchedCustomServices:=<span class="string">'["com.chaos.monkey.SimpleApiAdapter"]'</span></span><br></pre></td></tr></table></figure>
+<h3><span id="더나아가서-특정-파라미터는-어디서-설정-할까">더나아가서: 특정 파라미터는 어디서 설정 할까?</span></h3>
+<p>이렇게 케이스별로 카오스몽키 예제를 연습해 보았다.<br>
+실무에서 가장 사용할만한 케이스는 특정 파라미터에 특정 엔드포인트를 지연시키는 케이스 정도 될거 같은데 그럼 특정 파라미터에 대한 CRUD는 어디서 할까? 서버에 저장하면 될까? 안된다<br>
+값은 변하기도 하고 장애주입 테스트는 하루 죙일 하기 보다 테스트 할 때만 잠깐 적용하는 경우가 많기 때문이다.<br>
+그래야 애플리케이션 수정없이 runtime 환경에서 카오스몽키 트리거를 할 수 있기 때문이다.</p>
+<p>그래서 redis에 캐쉬로 보관하면 딱이다. 로컬캐쉬는 멀티서버 환경에서 가시성 문제가 발생하기 때문에 적합지 않다.<br>
+간단하게 특정 파라미터를 CRUD 할수 있는 API를 만들고 TTL 과 같이 레디스에 넣으면 캐쉬로 존재 할때만 장애 테스트를 할 수 있게 된다.</p>
+<p>또한 QA 할 때도 스웨거로 공유하면 QA 할때도 요긴하게 사용 할 수 있다.<br>
+물론 개발서버에서만 우선 하는게 안전하다.</p>
+<h3><span id="애플리케이션-보안">애플리케이션 보안</span></h3>
+<p>기본적으로 카오스몽키 활성화 설정은 disabled 해놓자 얼마든지 api로 설정을 핸들링 할 수 있으니 필요 할 때 설정 하는걸로… 또한 phase 구성을 개발서버에서만 동작 하도록 하고 카오스몽키 액츄에이터 엔드포인트도 노출되서는 안된다.</p>
+<h3><span id="남은것">남은것</span></h3>
+<p>CustomException은 적용 되지 않는다.<br>
+특정 엔드포인트 점검 걸수 있도록 할 수 있을까?</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/09/07/Docker/Mac에서도 Window 에서도 도커로 동일한 Mysql DB 환경 만들기/" data-toggle="tooltip" data-placement="top" title="Mac에서도 Window 에서도 도커로 동일한 Mysql DB 환경 만들기">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+                
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">배경</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">카오스몽키</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">카오스몽키 동작 방식</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">사전 준비</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">카오스몽키 적용 하기 (feat: CM4SB)</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">시나리오: RestController만 요청 마다 2s ~ 5s 지연 시키기</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">7.</span> <span class="toc-nav-text">시나리오: 특정 메소드에만 적용</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">8.</span> <span class="toc-nav-text">시나리오: 특정 엔드포인트에 특정 파라미터인 경우 레이턴시 적용</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">9.</span> <span class="toc-nav-text">시나리오: 특정 엔드포인트에 특정 Exception 발생시키기</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">10.</span> <span class="toc-nav-text">더나아가서: 특정 파라미터는 어디서 설정 할까?</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">11.</span> <span class="toc-nav-text">애플리케이션 보안</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">12.</span> <span class="toc-nav-text">남은것</span></a></li></ol>
+        
+        </div>
+      </aside>
+    
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Component" title="Component">Component</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "Yungwang";
+    var disqus_identifier = "https://biggwang.github.io/2022/10/18/Component/카오스몽키로 동적으로 어플리케이션 장애 주입하기/";
+    var disqus_url = "https://biggwang.github.io/2022/10/18/Component/카오스몽키로 동적으로 어플리케이션 장애 주입하기/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                            
+                                    
+
+                                            
+
+                                                    
+                                                        <li>
+                                                            <a target="_blank" href="https://www.facebook.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                                                                <span class="fa-stack fa-lg">
+                                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                        
+
+                                                            
+                                                                <li>
+                                                                    <a target="_blank" href="https://github.com/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                                                                        <span class="fa-stack fa-lg">
+                                                                            <i class="fa fa-circle fa-stack-2x"></i>
+                                                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                
+
+                                                                    
+                                                                        <li>
+                                                                            <a target="_blank" href="https://www.linkedin.com/in/Yungwang Ryu" rel="external nofollow noopener noreferrer">
+                                                                                <span class="fa-stack fa-lg">
+                                                                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                                                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                                                                </span>
+                                                                            </a>
+                                                                        </li>
+                                                                        
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Yungwang Ryu
+                        2022
+                            <br>
+                            Theme by <a href="http://huangxuan.me" rel="external nofollow noopener noreferrer" target="_blank">Hux</a>
+                            <span style="display: inline-block; margin: 0 5px;">
+                                <i class="fa fa-heart"></i>
+                            </span>
+                            re-Ported by <a href="http://beantech.org" rel="external nofollow noopener noreferrer" target="_blank">BeanTech</a> |
+                            <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="91px" height="20px" src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true">
+                            </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div align="center">
+        <a href="https://hits.seeyoufarm.com" rel="external nofollow noopener noreferrer" target="_blank">
+            <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fbiggwang.github.io&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false">
+        </a>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/js/hux-blog.min.js"></script>
+
+
+            <!-- async load function -->
+            <script>
+                function async(u, c) {
+                    var d = document, t = 'script',
+                        o = d.createElement(t),
+                        s = d.getElementsByTagName(t)[0];
+                    o.src = u;
+                    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+                    s.parentNode.insertBefore(o, s);
+                }
+            </script>
+
+            <!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+            <!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+            <!-- jquery.tagcloud.js -->
+            <script>
+                // only load tagcloud.js in tag.html
+                if ($('#tag_cloud').length !== 0) {
+                    async("https://biggwang.github.io/js/jquery.tagcloud.js", function () {
+                        $.fn.tagcloud.defaults = {
+                            //size: {start: 1, end: 1, unit: 'em'},
+                            color: { start: '#bbbbee', end: '#0085a1' },
+                        };
+                        $('#tag_cloud a').tagcloud();
+                    })
+                }
+            </script>
+
+            <!--fastClick.js -->
+            <script>
+                async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function () {
+                    var $nav = document.querySelector("nav");
+                    if ($nav) FastClick.attach($nav);
+                })
+            </script>
+
+
+            <!-- Google Analytics -->
+
+            
+                <script>
+                    // dynamic User by Hux
+                    var _gaId = 'UA-128907631-1';
+                    var _gaDomain = 'https://biggwang.github.io/';
+
+                    // Originial
+                    (function (i, s, o, g, r, a, m) {
+                        i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+                    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+                    ga('create', _gaId, _gaDomain);
+                    ga('send', 'pageview');
+                </script>
+
+                
+
+
+                    <!-- Baidu Tongji -->
+                    
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async></script>
+<!-- Image to hack wechat -->
+<img src="https://biggwang.github.io/img/icon_wechat.png" width="0" height="0">
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
